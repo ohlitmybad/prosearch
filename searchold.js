@@ -1,1 +1,2297 @@
-const leagues={'Ecuador':['Universidad','Técnico\x20Universitario','Orense','Mushuc\x20Runa','Macará','Libertad\x20(ECU)','LDU\x20Quito','Independiente\x20del\x20Valle','Imbabura','Emelec','El\x20Nacional','Deportivo\x20Cuenca','Delfin','Cumbayá','Barcelona\x20(ECU)','Aucas','Guayaquil\x20City','Gualaceo'],'Chile':['Ñublense','Unión\x20La\x20Calera','Unión\x20Española','Universidad\x20de\x20Chile','Universidad\x20Católica','Palestino','O\x27Higgins','Huachipato','Everton\x20(CHI)','Deportes\x20Iquique','Coquimbo\x20Unido','Copiapó','Colo\x20Colo','Cobresal','Cobreloa','Audax\x20Italiano','Curicó\x20Unido','Magallanes'],'Paraguay':['Tacuary','Sportivo\x20Trinidense','Sportivo\x20Luqueño','Sportivo\x20Ameliano','Sol\x20de\x20América','Olimpia','Nacional\x20Asunción','Libertad','Guaraní','General\x20Caballero\x20JLM','Cerro\x20Porteño','2\x20de\x20Mayo','Resistencia','Guaireña'],'Colombia':['Águilas\x20Doradas','Tolima','Santa\x20Fe','Medellín','Patriotas\x20Boyacá','Once\x20Caldas','Millonarios','La\x20Equidad','Junior','Jaguares\x20de\x20Córdoba','Fortaleza\x20(COL)','Envigado','Deportivo\x20Pereira','Deportivo\x20Pasto','Deportivo\x20Cali','Boyacá\x20Chicó','Atlético\x20Nacional','Atlético\x20Bucaramanga','América\x20de\x20Cali','Alianza','Atlético\x20Huila','Unión\x20Magdalena'],'Argentina\x20Primera':['Argentinos\x20Juniors','Atlético\x20Tucumán','Banfield','Barracas\x20Central','Belgrano','Boca\x20Juniors','Central\x20Córdoba\x20SdE','Defensa\x20y\x20Justicia','Deportivo\x20Riestra','Estudiantes','Gimnasia\x20La\x20Plata','Godoy\x20Cruz','Huracán','Independiente','Independiente\x20Rivadavia','Instituto','Lanús','Newell\x27s\x20Old\x20Boys','Platense','Racing\x20Club','River\x20Plate','Rosario\x20Central','San\x20Lorenzo','Sarmiento','Talleres\x20Córdoba','Tigre','Unión\x20Santa\x20Fe','Vélez\x20Sarsfield','Colón'],'Brazil\x20Serie\x20A':['Athletico\x20Paranaense','Atlético\x20GO','Atlético\x20Mineiro','Bahia','Botafogo','Corinthians','Criciúma','Cruzeiro','Cuiabá','Flamengo','Fluminense','Fortaleza','Grêmio','Internacional','Juventude','Palmeiras','Red\x20Bull\x20Bragantino','São\x20Paulo','Vasco\x20da\x20Gama','Vitória','Santos','América\x20Mineiro','Coritiba','Goiás'],'Uruguay\x20Primera':['Boston\x20River','Cerro','Cerro\x20Largo','Danubio','Defensor\x20Sporting','Deportivo\x20Maldonado','Fénix','Liverpool\x20(URU)','Miramar\x20Misiones','Nacional\x20(URU)','Peñarol','Progreso','Racing','Rampla\x20Juniors','River\x20Plate\x20(URU)','Wanderers','Plaza\x20Colonia','La\x20Luz','Torque'],'MLS':['Los\x20Angeles\x20FC','Philadelphia\x20Union','SJ\x20Earthquakes','Orlando\x20City','Toronto','Minnesota\x20United','Colorado\x20Rapids','Chicago\x20Fire','St.\x20Louis\x20City','St.\x20Louis\x20City\x20','Charlotte\x20FC','Dallas','Vancouver\x20Whitecaps','Inter\x20Miami','Austin\x20FC','DC\x20United','Los\x20Angeles\x20Galaxy','New\x20York\x20RB','Sporting\x20KC','Portland\x20Timbers','Nashville\x20SC','Seattle\x20Sounders','CF\x20Montréal','Real\x20Salt\x20Lake','New\x20York\x20City','Houston\x20Dynamo','Atlanta\x20United','New\x20England','Cincinnati','Columbus\x20Crew'],'K\x20League\x201':['Gangwon','Seoul','Pohang\x20Steelers','Suwon','Gwangju','Jeju\x20United','Ulsan\x20Hyundai','Daejeon\x20Citizen','Jeonbuk\x20Motors','Incheon\x20United','Daegu','Gimcheon\x20Sangmu'],'J1\x20League':['Albirex\x20Niigata','Avispa\x20Fukuoka','Cerezo\x20Osaka','Consadole\x20Sapporo','Gamba\x20Osaka','Júbilo\x20Iwata','Kashima\x20Antlers','Kashiwa\x20Reysol','Kawasaki\x20Frontale','Kyoto\x20Sanga','Machida\x20Zelvia','Nagoya\x20Grampus','Sagan\x20Tosu','Sanfrecce\x20Hiroshima','Shonan\x20Bellmare','Tokyo','Tokyo\x20Verdy','Urawa\x20Reds','Vissel\x20Kobe','Yokohama\x20F.\x20Marinos','Suwon\x20Bluewings','Yokohama'],'Norway\x20Eliteserien':['Bodø\x20/\x20Glimt','Brann','Fredrikstad','HamKam','Haugesund','KFUM','Kristiansund','Lillestrøm','Molde','Odds','Rosenborg','Sandefjord','Sarpsborg\x2008','Strømsgodset','Tromsø','Viking','Vålerenga','Aalesund','Stabæk'],'Sweden\x20Allsvenskan':['AIK','Brommapojkarna','Djurgården','Elfsborg','GAIS','Halmstad','Hammarby','Häcken','IFK\x20Göteborg','IFK\x20Norrköping','Kalmar','Malmö\x20FF','Mjällby','Sirius','Värnamo','Västerås\x20SK','Degerfors','Varbergs'],'Ukraine':['Shakhtar\x20Donetsk','Dynamo\x20Kyiv','Polissya','Vorskla','Rukh\x20Lviv','Kryvbas\x20KR','Zorya','Veres','Obolon','Livyi\x20Bereh','LNZ\x20Cherkasy','Inhulets','Karpaty','Oleksandria','Chornomorets','Kolos\x20Kovalivka'],'Poland':['Cracovia\x20Kraków','Pogoń\x20Szczecin','Lech\x20Poznań','Korona\x20Kielce','Legia\x20Warszawa','Śląsk\x20Wrocław','Zagłębie\x20Lubin','Jagiellonia\x20Białystok','Widzew\x20Łódź','Raków\x20Częstochowa','Piast\x20Gliwice','Puszcza\x20Niepołomice','Stal\x20Mielec','Lechia\x20Gdańsk','Katowice','Motor\x20Lublin','Górnik\x20Zabrze','Radomiak\x20Radom'],'Russia':['Lokomotiv\x20Moskva','Spartak\x20Moskva','Krylya\x20Sovetov','CSKA\x20Moskva','Zenit','Krasnodar','Orenburg','Rubin\x20Kazan\x27','Dinamo\x20Moskva','Akhmat\x20Grozny','Nizhny\x20Novgorod','Fakel','Akron\x20Togliatti','Dynamo\x20Makhachkala','Khimki','Rostov','Ural','Baltika','Sochi'],'Israel':['Hapoel\x20Haifa','Maccabi\x20Petah\x20Tikva','Ironi\x20Kiryat\x20Shmona','Beitar\x20Jerusalem','Hapoel\x20Jerusalem','Maccabi\x20Tel\x20Aviv','Maccabi\x20Bnei\x20Raina','Ashdod','Maccabi\x20Netanya','Ironi\x20Tiberias','Hapoel\x20Hadera','Bnei\x20Sakhnin','Hapoel\x20Be\x27er\x20Sheva','Maccabi\x20Haifa'],'Greece':['PAOK','Panathinaikos','Olympiacos\x20Piraeus','AEK\x20Athens','Panetolikos\x20FC','OFI','Atromitos','Aris','Volos\x20NFC','Asteras\x20Tripolis','Panserraikos','Lamia','Levadiakos','Athens\x20Kallithea','Ergotelis','PAE\x20Chania','Diagoras\x20Rodou','AO\x20Xanthi','Ionikos','Trikala','Panachaiki','Doxa\x20Dramas','Apollon\x20Larisas','Karaiskakis\x20Artas','Ierapetras'],'Championship':['Burnley','Leeds\x20United','Sunderland','Preston\x20North\x20End','Luton\x20Town','Stoke\x20City','Derby\x20County','Bristol\x20City','Coventry\x20City','Norwich\x20City','Queens\x20Park\x20Rangers','Watford','Middlesbrough','Hull\x20City','Cardiff\x20City','West\x20Bromwich\x20Albion','Blackburn\x20Rovers','Sheffield\x20United','Oxford\x20United','Plymouth\x20Argyle','Millwall','Portsmouth','Swansea\x20City','Sheffield\x20Wednesday'],'Süper\x20Lig':['Fenerbahçe','Trabzonspor','Kayserispor','İstanbul\x20Başakşehir','Rizespor','Göztepe','Eyüpspor','Galatasaray','Beşiktaş','Bodrumspor','Samsunspor','Antalyaspor','Konyaspor','Kasımpaşa','Gaziantep','Hatayspor','Sivasspor','Alanyaspor','Adana\x20Demirspor'],'Segunda\x20Division':['Almería','Granada','Sporting\x20Gijón','Racing\x20Santander','Cádiz','Elche','Real\x20Oviedo','Deportivo\x20La\x20Coruña','Burgos','Cartagena','Eldense','Real\x20Zaragoza','Eibar','Castellón','Racing\x20Ferrol','Málaga','Levante','Córdoba','Huesca','Tenerife','Albacete','Mirandés'],'Scotland\x20Premiership':['Rangers','Celtic','Hibernian','Hearts','Aberdeen','Kilmarnock','Dundee\x20United','Ross\x20County','St.\x20Mirren','Dundee','St.\x20Johnstone','Motherwell'],'Belgium\x20Pro\x20League':['Cercle\x20Brugge','OH\x20Leuven','Union\x20Saint-Gilloise','Club\x20Brugge','Genk','Gent','Antwerp','Kortrijk','Beerschot-Wilrijk','Standard\x20Liège','Sint-Truiden','Dender','Westerlo','Mechelen','Anderlecht','Charleroi'],'Swiss\x20Super\x20League':['Lugano','Young\x20Boys','Yverdon\x20Sport','St.\x20Gallen','Grasshopper','Lausanne\x20Sport','Sion','Zürich','Servette','Winterthur','Basel','Luzern'],'Austrian\x20Bundesliga':['Sturm\x20Graz','LASK','Salzburg','Rapid\x20Wien','Hartberg','Wolfsberger\x20AC','Rheindorf\x20Altach','WSG\x20Swarovski\x20Tirol','Austria\x20Wien','Grazer\x20AK','Blau-Weiß\x20Linz','Austria\x20Klagenfurt'],'Saudi\x20Pro\x20League':['Al\x20Nassr','Al\x20Ittihad','Al\x20Hilal','Al\x20Ahli','Al\x20Qadisiyah','Al\x20Taawon','Al\x20Ettifaq','Al\x20Orubah','Al\x20Wehda','Al\x20Khaleej','Al\x20Shabab','Al\x20Fateh','Al\x20Kholood','Al\x20Riyadh','Al\x20Akhdoud','Dhamk','Al\x20Raed','Al\x20Feiha'],'LigaMX':['América','Cruz\x20Azul','Santos\x20Laguna','Necaxa','Pachuca','Guadalajara','Monterrey','Toluca','Atlas','Club\x20Tijuana','Puebla','Atlético\x20de\x20San\x20Luis','Juárez','Tigres\x20UANL','Pumas\x20UNAM','Mazatlán','Querétaro','León'],'Denmark\x20Superliga':['Brøndby','Viborg','Nordsjælland','København','Midtjylland','SønderjyskE','Sønderjyske','AaB','Silkeborg','Randers','Lyngby','Vejle','AGF'],'Czech\x20Fortuna\x20Liga':['Sparta\x20Praha','Viktoria\x20Plzeň','Hradec\x20Králové','Teplice','Baník\x20Ostrava','Mladá\x20Boleslav','Slovan\x20Liberec','Pardubice','Sigma\x20Olomouc','Dukla\x20Praha','České\x20Budějovice','Slovácko','Karviná','Bohemians\x201905','Jablonec','Slavia\x20Praha'],'Serbia\x20SuperLiga':['Bačka\x20Topola','Partizan','Spartak\x20Subotica','Radnički\x20Niš','Crvena\x20Zvezda','Napredak\x20Kruševac','OFK\x20Beograd','Vojvodina','Novi\x20Pazar','Radnički\x20Kragujevac','Čukarički','Tekstilac\x20Odžaci','Jedinstvo\x20Ub','Mladost\x20Lučani','Železničar\x20Pancevo','IMT\x20Novi\x20Beograd'],'Croatia\x20HNL':['Hajduk\x20Split','Dinamo\x20Zagreb','Osijek','Istra\x201961','Rijeka','Varaždin','Slaven\x20Belupo','Lokomotiva\x20Zagreb','Gorica','Šibenik'],'Bundesliga\x202':['Köln','Hertha\x20BSC','Fortuna\x20Düsseldorf','Kaiserslautern','Darmstadt\x2098','Magdeburg','Hamburger\x20SV','Jahn\x20Regensburg','Paderborn','Eintracht\x20Braunschweig','Greuther\x20Fürth','Hannover\x2096','Nürnberg','Karlsruher\x20SC','Schalke\x2004','Ulm','Preußen\x20Münster','Elversberg'],'Serie\x20B':['Pisa','Palermo','Cittadella','Bari','Catanzaro','Modena','Cremonese','Frosinone','Carrarese','Sampdoria','Salernitana','Cosenza','Juve\x20Stabia','Brescia','Cesena','Mantova','Sassuolo','Spezia','Reggiana','Südtirol'],'Ligue\x202':['Lorient','Caen','Paris','Pau','Guingamp','Rodez','Annecy','Metz','Red\x20Star','Dunkerque','Grenoble','Ajaccio','Laval','Amiens\x20SC','Troyes','Bastia','Martigues','Clermont','Rodez\x20'],'Primeira\x20Liga':['Porto','Benfica','Sporting\x20CP','Sporting\x20Braga','Vitória\x20Guimarães','Gil\x20Vicente','Farense','Moreirense','Nacional','Arouca','Estoril','Rio\x20Ave','Santa\x20Clara','Boavista','Casa\x20Pia\x20AC','Famalicão','Estrela\x20Amadora','AVS','AVS\x20'],'Ligue\x201':['PSG','Lille','Nice','Lens','Nantes','Reims','Olympique\x20Lyonnais','Monaco','Olympique\x20Marseille','Brest','Saint-Étienne','Montpellier','Angers\x20SCO','Le\x20Havre','Rennes','Auxerre','Strasbourg','Toulouse'],'Premier\x20League':['Manchester\x20City','Tottenham\x20Hotspur','Arsenal','Manchester\x20United','Aston\x20Villa','Liverpool','Southampton','Everton','Chelsea','Brighton','Newcastle\x20United','Wolverhampton\x20Wanderers','Fulham','Crystal\x20Palace','Brentford','Bournemouth','West\x20Ham\x20United','Leicester\x20City','Nottingham\x20Forest','Ipswich\x20Town','Wolverhampton'],'Bundesliga':['Borussia\x20Dortmund','Stuttgart','Wolfsburg','Bayer\x20Leverkusen','Borussia\x20M\x27gladbach','Augsburg','Union\x20Berlin','Eintracht\x20Frankfurt','Bayern\x20München','Hoffenheim','Mainz\x2005','Werder\x20Bremen','RB\x20Leipzig','St.\x20Pauli','Holstein\x20Kiel','Freiburg','Heidenheim','Bochum','Borussia\x20Mgladbach'],'Eredivisie':['PSV','Feyenoord','Sparta\x20Rotterdam','Twente','Utrecht','Groningen','PEC\x20Zwolle','Almere\x20City','NAC\x20Breda','NEC','Fortuna\x20Sittard','Go\x20Ahead\x20Eagles','Heerenveen','Willem\x20II','Heracles','AZ','RKC\x20Waalwijk','Ajax'],'La\x20Liga':['Valencia','Atlético\x20Madrid','Barcelona','Real\x20Madrid','Real\x20Sociedad','Real\x20Betis','Osasuna','Deportivo\x20Alavés','Getafe','Athletic\x20Bilbao','Girona','Mallorca','Villarreal','Real\x20Valladolid','Rayo\x20Vallecano','Leganés','Sevilla','Las\x20Palmas','Celta\x20de\x20Vigo','Espanyol'],'Serie\x20A':['Milan','Juventus','Atalanta','Lazio','Napoli','Roma','Monza','Internazionale','Lecce','Torino','Parma','Udinese','Genoa','Hellas\x20Verona','Bologna','Fiorentina','Cagliari','Venezia','Como','Empoli']},allData1=[],allData2=[],allData3=[],allData4=[],allData5=[],allData6=[],allData7=[],allData8=[],allData9=[],allData10=[],allData11=[],allData12=[];let allDataAsString1='',allDataAsString2='',allDataAsString3='',allDataAsString4='',allDataAsString5='',allDataAsString6='';const urls1=['https://datamb.football/database/OLD/RATOP72425/GK/GK.xlsx'],urls2=['https://datamb.football/database/OLD/RAPRO2425/GK/GK.xlsx','https://datamb.football/database/OLD/RAPRO2024/GK/GK.xlsx'],urls3=['https://datamb.football/database/OLD/RATOP72425/CB/CB.xlsx'],urls4=['https://datamb.football/database/OLD/RAPRO2425/CB/CB.xlsx','https://datamb.football/database/OLD/RAPRO2024/CB/CB.xlsx'],urls5=['https://datamb.football/database/OLD/RATOP72425/FB/FB.xlsx'],urls6=['https://datamb.football/database/OLD/RAPRO2425/FB/FB.xlsx','https://datamb.football/database/OLD/RAPRO2024/FB/FB.xlsx'],urls7=['https://datamb.football/database/OLD/RATOP72425/CM/CM.xlsx'],urls8=['https://datamb.football/database/OLD/RAPRO2425/CM/CM.xlsx','https://datamb.football/database/OLD/RAPRO2024/CM/CM.xlsx'],urls9=['https://datamb.football/database/OLD/RATOP72425/FW/FW.xlsx'],urls10=['https://datamb.football/database/OLD/RAPRO2425/FW/FW.xlsx','https://datamb.football/database/OLD/RAPRO2024/FW/FW.xlsx'],urls11=['https://datamb.football/database/OLD/RATOP72425/ST/ST.xlsx'],urls12=['https://datamb.football/database/OLD/RAPRO2425/ST/ST.xlsx','https://datamb.football/database/OLD/RAPRO2024/ST/ST.xlsx'],fetchPromises1=urls1['map'](_0xd0837b=>fetch(_0xd0837b)['then'](_0x28e468=>_0x28e468['arrayBuffer']())),fetchPromises2=urls2['map'](_0x56889a=>fetch(_0x56889a)['then'](_0x32fb47=>_0x32fb47['arrayBuffer']()));function processAndStoreData1(_0x277aa5){let _0x53864d=0x1;_0x277aa5['forEach'](_0x52f527=>{const _0x10709b=XLSX['read'](new Uint8Array(_0x52f527),{'type':'array'}),_0x10a084=_0x10709b['SheetNames'][0x0],_0x40e89a=_0x10709b['Sheets'][_0x10a084],_0x166c6a=XLSX['utils']['sheet_to_json'](_0x40e89a,{'header':0x1}),_0x164ab5=_0x166c6a['slice'](0x1);_0x164ab5['forEach'](_0x54b4c6=>{_0x54b4c6['unshift'](''+_0x53864d++),_0x54b4c6[0xf]=''+_0x54b4c6[0x1];const _0x430440=[_0x54b4c6[0x0],_0x54b4c6[0xf],_0x54b4c6[0x2],_0x54b4c6[0x8],_0x54b4c6[0xa],_0x54b4c6[0x5],_0x54b4c6[0xb],_0x54b4c6[0x7],_0x54b4c6[0x6],_0x54b4c6[0x9],_0x54b4c6[0x4],_0x54b4c6[0x3]];allData1['push'](_0x430440);});function _0x4eb331(_0x1d84c9){for(const [_0x11191f,_0x351290]of Object['entries'](leagues)){if(_0x351290['includes'](_0x1d84c9))return _0x11191f;}return'Unknown\x20League';}const _0x2e4ae=[];allData1['forEach'](_0x275200=>{if(_0x275200['length']>=0x3){const _0x437232=_0x275200[0x2],_0x3732e0=_0x4eb331(_0x437232);_0x275200[0xc]=_0x3732e0,_0x2e4ae['push'](_0x275200['join'](','));}else _0x2e4ae['push'](_0x275200['join'](','));});});const _0x1014b3=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x36ffcb=_0x1014b3['map'](_0x4e7a90=>allData1['map'](_0x87dc24=>parseFloat(_0x87dc24[_0x4e7a90]))),_0x15d7a7=_0x36ffcb['map'](_0x14b790=>{const _0x3980fa=[..._0x14b790]['sort']((_0x23cc43,_0x229a52)=>_0x23cc43-_0x229a52);return _0x14b790['map'](_0x2a4c45=>{const _0x2c78e9=_0x3980fa['indexOf'](_0x2a4c45)+0x1;return _0x2c78e9/_0x3980fa['length'];});});allData1['forEach']((_0x4b33e4,_0x459a84)=>{_0x1014b3['forEach']((_0x5a925b,_0x50b083)=>{_0x4b33e4[_0x5a925b]=_0x15d7a7[_0x50b083][_0x459a84]['toFixed'](0x3);});});}function processAndStoreData2(_0x77adc7){let _0x3f1b60=0x1;_0x77adc7['forEach'](_0x5a976b=>{const _0x42b33a=XLSX['read'](new Uint8Array(_0x5a976b),{'type':'array'}),_0x29a4db=_0x42b33a['SheetNames'][0x0],_0x27fb4b=_0x42b33a['Sheets'][_0x29a4db],_0x3165a6=XLSX['utils']['sheet_to_json'](_0x27fb4b,{'header':0x1}),_0x2f565e=_0x3165a6['slice'](0x1);_0x2f565e['forEach'](_0x3c8616=>{_0x3c8616['unshift'](''+_0x3f1b60++),_0x3c8616[0xf]=''+_0x3c8616[0x1];const _0x487d66=[_0x3c8616[0x0],_0x3c8616[0xf],_0x3c8616[0x2],_0x3c8616[0x8],_0x3c8616[0xa],_0x3c8616[0x5],_0x3c8616[0xb],_0x3c8616[0x7],_0x3c8616[0x6],_0x3c8616[0x9],_0x3c8616[0x4],_0x3c8616[0x3]];allData2['push'](_0x487d66);});function _0x38f200(_0x1e0e6e){for(const [_0x41524c,_0x9a7ad8]of Object['entries'](leagues)){if(_0x9a7ad8['includes'](_0x1e0e6e))return _0x41524c;}return'Unknown\x20League';}const _0x521c9d=[];allData2['forEach'](_0x153601=>{if(_0x153601['length']>=0x3){const _0x4efdbd=_0x153601[0x2],_0x422899=_0x38f200(_0x4efdbd);_0x153601[0xc]=_0x422899,_0x521c9d['push'](_0x153601['join'](','));}else _0x521c9d['push'](_0x153601['join'](','));});});const _0x51f329=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x371f86=_0x51f329['map'](_0xc0bd69=>allData2['map'](_0x1a4f85=>parseFloat(_0x1a4f85[_0xc0bd69]))),_0x149c65=_0x371f86['map'](_0x5e2add=>{const _0x589e08=[..._0x5e2add]['sort']((_0x27df90,_0x39fd9b)=>_0x27df90-_0x39fd9b);return _0x5e2add['map'](_0x1cc8a1=>{const _0x331a65=_0x589e08['indexOf'](_0x1cc8a1)+0x1;return _0x331a65/_0x589e08['length'];});});allData2['forEach']((_0x5d1d81,_0x35ad52)=>{_0x51f329['forEach']((_0x2a51bc,_0x1bad9c)=>{_0x5d1d81[_0x2a51bc]=_0x149c65[_0x1bad9c][_0x35ad52]['toFixed'](0x3);});});}Promise['all'](fetchPromises1)['then'](_0xd94b78=>{processAndStoreData1(_0xd94b78),Promise['all'](fetchPromises2)['then'](_0x478a3b=>{processAndStoreData2(_0x478a3b);const _0x4d30b7=allData1['concat'](allData2);_0x4d30b7['forEach']((_0x8a6ced,_0x4e9e27)=>{_0x8a6ced[0x0]=''+(_0x4e9e27+0x1);}),_0x4d30b7['forEach'](_0x12b26e=>{allDataAsString1+=_0x12b26e['join'](',')+'\x0a';});let _0x530a79=allDataAsString1['split']('\x5cn')['join']('\x0a'),_0x440381=_0x530a79['split']('\x0a');_0x440381['pop'](),_0x530a79=_0x440381['join']('\x0a');const _0x4f97c6=urls3['map'](_0x170a81=>fetch(_0x170a81)['then'](_0x566746=>_0x566746['arrayBuffer']())),_0x205a95=urls4['map'](_0x115f2f=>fetch(_0x115f2f)['then'](_0xda4054=>_0xda4054['arrayBuffer']()));function _0x1bdb13(_0x764865){let _0x1e4acd=0x1;_0x764865['forEach'](_0x571d3d=>{const _0x59b07e=XLSX['read'](new Uint8Array(_0x571d3d),{'type':'array'}),_0x5ba490=_0x59b07e['SheetNames'][0x0],_0x3fe760=_0x59b07e['Sheets'][_0x5ba490],_0x353c01=XLSX['utils']['sheet_to_json'](_0x3fe760,{'header':0x1}),_0x1cd8b2=_0x353c01['slice'](0x1);_0x1cd8b2['forEach'](_0x1198b9=>{_0x1198b9['unshift'](''+_0x1e4acd++),_0x1198b9[0xf]=''+_0x1198b9[0x1];const _0x21ad1a=[_0x1198b9[0x0],_0x1198b9[0xf],_0x1198b9[0x2],_0x1198b9[0xa],_0x1198b9[0x9],_0x1198b9[0xb],_0x1198b9[0x5],_0x1198b9[0x6],_0x1198b9[0x7],_0x1198b9[0x8],_0x1198b9[0x4],_0x1198b9[0x3]];allData3['push'](_0x21ad1a);});function _0x1b18d3(_0x1ac4da){for(const [_0x2e4400,_0x5d40fc]of Object['entries'](leagues)){if(_0x5d40fc['includes'](_0x1ac4da))return _0x2e4400;}return'Unknown\x20League';}const _0x538bd6=[];allData3['forEach'](_0xda322d=>{if(_0xda322d['length']>=0x3){const _0x2f94c7=_0xda322d[0x2],_0x262a97=_0x1b18d3(_0x2f94c7);_0xda322d[0xc]=_0x262a97,_0x538bd6['push'](_0xda322d['join'](','));}else _0x538bd6['push'](_0xda322d['join'](','));});});const _0x2a29ca=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x1ca8a0=_0x2a29ca['map'](_0x29b657=>allData3['map'](_0xa06cb7=>parseFloat(_0xa06cb7[_0x29b657]))),_0x167e78=_0x1ca8a0['map'](_0x48fcad=>{const _0x4d365a=[..._0x48fcad]['sort']((_0x1018d5,_0x59ab1e)=>_0x1018d5-_0x59ab1e);return _0x48fcad['map'](_0x578267=>{const _0x5361ad=_0x4d365a['indexOf'](_0x578267)+0x1;return _0x5361ad/_0x4d365a['length'];});});allData3['forEach']((_0x72e07c,_0x4b1015)=>{_0x2a29ca['forEach']((_0x3c434d,_0x37c712)=>{_0x72e07c[_0x3c434d]=_0x167e78[_0x37c712][_0x4b1015]['toFixed'](0x3);});});}function _0x2c50cd(_0x414a54){let _0xffd2b5=0x1;_0x414a54['forEach'](_0x3b2f7d=>{const _0x4a9920=XLSX['read'](new Uint8Array(_0x3b2f7d),{'type':'array'}),_0x257158=_0x4a9920['SheetNames'][0x0],_0x15fec3=_0x4a9920['Sheets'][_0x257158],_0x2ad213=XLSX['utils']['sheet_to_json'](_0x15fec3,{'header':0x1}),_0xd4092b=_0x2ad213['slice'](0x1);_0xd4092b['forEach'](_0x4a9e0a=>{_0x4a9e0a['unshift'](''+_0xffd2b5++),_0x4a9e0a[0xf]=''+_0x4a9e0a[0x1];const _0x42516f=[_0x4a9e0a[0x0],_0x4a9e0a[0xf],_0x4a9e0a[0x2],_0x4a9e0a[0xa],_0x4a9e0a[0x9],_0x4a9e0a[0xb],_0x4a9e0a[0x5],_0x4a9e0a[0x6],_0x4a9e0a[0x7],_0x4a9e0a[0x8],_0x4a9e0a[0x4],_0x4a9e0a[0x3]];allData4['push'](_0x42516f);});function _0x323e05(_0x78389){for(const [_0x24b78e,_0x5a5d45]of Object['entries'](leagues)){if(_0x5a5d45['includes'](_0x78389))return _0x24b78e;}return'Unknown\x20League';}const _0x523bc5=[];allData4['forEach'](_0x5a0343=>{if(_0x5a0343['length']>=0x3){const _0xab4cbc=_0x5a0343[0x2],_0x1cdf93=_0x323e05(_0xab4cbc);_0x5a0343[0xc]=_0x1cdf93,_0x523bc5['push'](_0x5a0343['join'](','));}else _0x523bc5['push'](_0x5a0343['join'](','));});});const _0x500d11=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x588724=_0x500d11['map'](_0x982431=>allData4['map'](_0x4f4fca=>parseFloat(_0x4f4fca[_0x982431]))),_0x24ca52=_0x588724['map'](_0x3a1e35=>{const _0x5a7a00=[..._0x3a1e35]['sort']((_0x58ba23,_0x323734)=>_0x58ba23-_0x323734);return _0x3a1e35['map'](_0xe18a7=>{const _0x3cee16=_0x5a7a00['indexOf'](_0xe18a7)+0x1;return _0x3cee16/_0x5a7a00['length'];});});allData4['forEach']((_0x59d5de,_0x5a2a2c)=>{_0x500d11['forEach']((_0x43411c,_0x2d928f)=>{_0x59d5de[_0x43411c]=_0x24ca52[_0x2d928f][_0x5a2a2c]['toFixed'](0x3);});});}Promise['all'](_0x4f97c6)['then'](_0x5453ff=>{_0x1bdb13(_0x5453ff),Promise['all'](_0x205a95)['then'](_0x244ebf=>{_0x2c50cd(_0x244ebf);const _0x38b4e2=allData3['concat'](allData4);_0x38b4e2['forEach']((_0x4c3bff,_0x1bb3c8)=>{_0x4c3bff[0x0]=''+(_0x1bb3c8+0x1);}),_0x38b4e2['forEach'](_0x35e742=>{allDataAsString2+=_0x35e742['join'](',')+'\x0a';});let _0x45570e=allDataAsString2['split']('\x5cn')['join']('\x0a'),_0x3318e1=_0x45570e['split']('\x0a');_0x3318e1['pop'](),_0x45570e=_0x3318e1['join']('\x0a');const _0x988ed3=urls5['map'](_0x47c165=>fetch(_0x47c165)['then'](_0xbe17c2=>_0xbe17c2['arrayBuffer']())),_0x440e74=urls6['map'](_0x4e86ea=>fetch(_0x4e86ea)['then'](_0x22724b=>_0x22724b['arrayBuffer']()));function _0x4417a5(_0x57bd4a){let _0x498dbc=0x1;_0x57bd4a['forEach'](_0x1eae0f=>{const _0x509d5c=XLSX['read'](new Uint8Array(_0x1eae0f),{'type':'array'}),_0x147c9a=_0x509d5c['SheetNames'][0x0],_0x7e4cad=_0x509d5c['Sheets'][_0x147c9a],_0x3106be=XLSX['utils']['sheet_to_json'](_0x7e4cad,{'header':0x1}),_0x31ba4f=_0x3106be['slice'](0x1);_0x31ba4f['forEach'](_0x5e52ff=>{_0x5e52ff['unshift'](''+_0x498dbc++),_0x5e52ff[0xf]=''+_0x5e52ff[0x1];const _0x5bd0bb=[_0x5e52ff[0x0],_0x5e52ff[0xf],_0x5e52ff[0x2],_0x5e52ff[0xa],_0x5e52ff[0x9],_0x5e52ff[0xb],_0x5e52ff[0x5],_0x5e52ff[0x6],_0x5e52ff[0x7],_0x5e52ff[0x8],_0x5e52ff[0x4],_0x5e52ff[0x3]];allData5['push'](_0x5bd0bb);});function _0x2d6e80(_0x27788f){for(const [_0x22da2f,_0x1d8ea8]of Object['entries'](leagues)){if(_0x1d8ea8['includes'](_0x27788f))return _0x22da2f;}return'Unknown\x20League';}const _0x500217=[];allData5['forEach'](_0x2c47f9=>{if(_0x2c47f9['length']>=0x3){const _0x495031=_0x2c47f9[0x2],_0x236b17=_0x2d6e80(_0x495031);_0x2c47f9[0xc]=_0x236b17,_0x500217['push'](_0x2c47f9['join'](','));}else _0x500217['push'](_0x2c47f9['join'](','));});});const _0x547033=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x3dd9d2=_0x547033['map'](_0x516fb0=>allData5['map'](_0x229c32=>parseFloat(_0x229c32[_0x516fb0]))),_0x2a7908=_0x3dd9d2['map'](_0x5a7ca5=>{const _0x2052c1=[..._0x5a7ca5]['sort']((_0x1f7b54,_0xc0236b)=>_0x1f7b54-_0xc0236b);return _0x5a7ca5['map'](_0x550d71=>{const _0x163bce=_0x2052c1['indexOf'](_0x550d71)+0x1;return _0x163bce/_0x2052c1['length'];});});allData5['forEach']((_0x522500,_0xcf16cf)=>{_0x547033['forEach']((_0x294e6e,_0x5df583)=>{_0x522500[_0x294e6e]=_0x2a7908[_0x5df583][_0xcf16cf]['toFixed'](0x3);});});}function _0x4b68f8(_0x1444ac){let _0x5147a0=0x1;_0x1444ac['forEach'](_0x317bf=>{const _0x4318=XLSX['read'](new Uint8Array(_0x317bf),{'type':'array'}),_0x287bd9=_0x4318['SheetNames'][0x0],_0x46ecb8=_0x4318['Sheets'][_0x287bd9],_0x3bc1e3=XLSX['utils']['sheet_to_json'](_0x46ecb8,{'header':0x1}),_0x2ec1a7=_0x3bc1e3['slice'](0x1);_0x2ec1a7['forEach'](_0x56b08c=>{_0x56b08c['unshift'](''+_0x5147a0++),_0x56b08c[0xf]=''+_0x56b08c[0x1];const _0x2bae09=[_0x56b08c[0x0],_0x56b08c[0xf],_0x56b08c[0x2],_0x56b08c[0xa],_0x56b08c[0x9],_0x56b08c[0xb],_0x56b08c[0x5],_0x56b08c[0x6],_0x56b08c[0x7],_0x56b08c[0x8],_0x56b08c[0x4],_0x56b08c[0x3]];allData6['push'](_0x2bae09);});function _0x58663a(_0x4d8917){for(const [_0x107a52,_0x311549]of Object['entries'](leagues)){if(_0x311549['includes'](_0x4d8917))return _0x107a52;}return'Unknown\x20League';}const _0x1e81f2=[];allData6['forEach'](_0x4de29c=>{if(_0x4de29c['length']>=0x3){const _0x5c5a01=_0x4de29c[0x2],_0x4232fd=_0x58663a(_0x5c5a01);_0x4de29c[0xc]=_0x4232fd,_0x1e81f2['push'](_0x4de29c['join'](','));}else _0x1e81f2['push'](_0x4de29c['join'](','));});});const _0x3736b3=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x58a2f1=_0x3736b3['map'](_0x267bbe=>allData6['map'](_0x2f5d3d=>parseFloat(_0x2f5d3d[_0x267bbe]))),_0x2672fb=_0x58a2f1['map'](_0xd241f1=>{const _0x1d6fc3=[..._0xd241f1]['sort']((_0x369599,_0x42974f)=>_0x369599-_0x42974f);return _0xd241f1['map'](_0x270918=>{const _0x282134=_0x1d6fc3['indexOf'](_0x270918)+0x1;return _0x282134/_0x1d6fc3['length'];});});allData6['forEach']((_0x12aa25,_0x37bbe7)=>{_0x3736b3['forEach']((_0x493be7,_0x3e401b)=>{_0x12aa25[_0x493be7]=_0x2672fb[_0x3e401b][_0x37bbe7]['toFixed'](0x3);});});}Promise['all'](_0x988ed3)['then'](_0x4f89bf=>{_0x4417a5(_0x4f89bf),Promise['all'](_0x440e74)['then'](_0x46fbd7=>{_0x4b68f8(_0x46fbd7);const _0x5103b6=allData5['concat'](allData6);_0x5103b6['forEach']((_0x45b125,_0x29cdfa)=>{_0x45b125[0x0]=''+(_0x29cdfa+0x1);}),_0x5103b6['forEach'](_0x16930=>{allDataAsString3+=_0x16930['join'](',')+'\x0a';});let _0x2efe6a=allDataAsString3['split']('\x5cn')['join']('\x0a'),_0x58ffda=_0x2efe6a['split']('\x0a');_0x58ffda['pop'](),_0x2efe6a=_0x58ffda['join']('\x0a');const _0x12f801=urls7['map'](_0x1c5dfe=>fetch(_0x1c5dfe)['then'](_0x3dc40f=>_0x3dc40f['arrayBuffer']())),_0x294b04=urls8['map'](_0x364440=>fetch(_0x364440)['then'](_0x3a2a6f=>_0x3a2a6f['arrayBuffer']()));function _0x3bcb08(_0x24ab06){let _0x47b494=0x1;_0x24ab06['forEach'](_0x4e4fc5=>{const _0x42f91c=XLSX['read'](new Uint8Array(_0x4e4fc5),{'type':'array'}),_0x239820=_0x42f91c['SheetNames'][0x0],_0x557363=_0x42f91c['Sheets'][_0x239820],_0x1f4b2a=XLSX['utils']['sheet_to_json'](_0x557363,{'header':0x1}),_0x21954e=_0x1f4b2a['slice'](0x1);_0x21954e['forEach'](_0x186942=>{_0x186942['unshift'](''+_0x47b494++),_0x186942[0xf]=''+_0x186942[0x1];const _0xe83274=[_0x186942[0x0],_0x186942[0xf],_0x186942[0x2],_0x186942[0x9],_0x186942[0x5],_0x186942[0x6],_0x186942[0xa],_0x186942[0x7],_0x186942[0x8],_0x186942[0xb],_0x186942[0x4],_0x186942[0x3]];allData7['push'](_0xe83274);});function _0x3664a8(_0xb1cfea){for(const [_0x42dadb,_0x41cad4]of Object['entries'](leagues)){if(_0x41cad4['includes'](_0xb1cfea))return _0x42dadb;}return'Unknown\x20League';}const _0x591143=[];allData7['forEach'](_0x33ea40=>{if(_0x33ea40['length']>=0x3){const _0x3de67=_0x33ea40[0x2],_0x262dac=_0x3664a8(_0x3de67);_0x33ea40[0xc]=_0x262dac,_0x591143['push'](_0x33ea40['join'](','));}else _0x591143['push'](_0x33ea40['join'](','));});});const _0x11a853=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x4c335b=_0x11a853['map'](_0x256fe9=>allData7['map'](_0x2367c9=>parseFloat(_0x2367c9[_0x256fe9]))),_0xa3c39a=_0x4c335b['map'](_0x1df7e1=>{const _0x2ed5fe=[..._0x1df7e1]['sort']((_0x674908,_0x48c01b)=>_0x674908-_0x48c01b);return _0x1df7e1['map'](_0x589b1c=>{const _0x45e0c8=_0x2ed5fe['indexOf'](_0x589b1c)+0x1;return _0x45e0c8/_0x2ed5fe['length'];});});allData7['forEach']((_0x251a9c,_0x3b9494)=>{_0x11a853['forEach']((_0x2df588,_0x15fc18)=>{_0x251a9c[_0x2df588]=_0xa3c39a[_0x15fc18][_0x3b9494]['toFixed'](0x3);});});}function _0x52600e(_0x77d740){let _0x14138d=0x1;_0x77d740['forEach'](_0x517300=>{const _0x506454=XLSX['read'](new Uint8Array(_0x517300),{'type':'array'}),_0x32a6ea=_0x506454['SheetNames'][0x0],_0x443de5=_0x506454['Sheets'][_0x32a6ea],_0x359a62=XLSX['utils']['sheet_to_json'](_0x443de5,{'header':0x1}),_0x579d5d=_0x359a62['slice'](0x1);_0x579d5d['forEach'](_0x135984=>{_0x135984['unshift'](''+_0x14138d++),_0x135984[0xf]=''+_0x135984[0x1];const _0x6b660b=[_0x135984[0x0],_0x135984[0xf],_0x135984[0x2],_0x135984[0x9],_0x135984[0x5],_0x135984[0x6],_0x135984[0xa],_0x135984[0x7],_0x135984[0x8],_0x135984[0xb],_0x135984[0x4],_0x135984[0x3]];allData8['push'](_0x6b660b);});function _0x5cbaa0(_0x1c9b47){for(const [_0x2288c5,_0x377929]of Object['entries'](leagues)){if(_0x377929['includes'](_0x1c9b47))return _0x2288c5;}return'Unknown\x20League';}const _0x2981d5=[];allData8['forEach'](_0x266e59=>{if(_0x266e59['length']>=0x3){const _0x29a9e8=_0x266e59[0x2],_0x2a93db=_0x5cbaa0(_0x29a9e8);_0x266e59[0xc]=_0x2a93db,_0x2981d5['push'](_0x266e59['join'](','));}else _0x2981d5['push'](_0x266e59['join'](','));});});const _0x42c2a3=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x97b511=_0x42c2a3['map'](_0x5a62eb=>allData8['map'](_0x400d42=>parseFloat(_0x400d42[_0x5a62eb]))),_0xaef45e=_0x97b511['map'](_0x550cfb=>{const _0x307738=[..._0x550cfb]['sort']((_0x2c232b,_0x2fd307)=>_0x2c232b-_0x2fd307);return _0x550cfb['map'](_0x4fdadf=>{const _0x4bf9d9=_0x307738['indexOf'](_0x4fdadf)+0x1;return _0x4bf9d9/_0x307738['length'];});});allData8['forEach']((_0x470f77,_0x28fd30)=>{_0x42c2a3['forEach']((_0x203cc5,_0xb88eb1)=>{_0x470f77[_0x203cc5]=_0xaef45e[_0xb88eb1][_0x28fd30]['toFixed'](0x3);});});}Promise['all'](_0x12f801)['then'](_0x14b19=>{_0x3bcb08(_0x14b19),Promise['all'](_0x294b04)['then'](_0x2050cd=>{_0x52600e(_0x2050cd);const _0x203396=allData7['concat'](allData8);_0x203396['forEach']((_0x27045e,_0x62512c)=>{_0x27045e[0x0]=''+(_0x62512c+0x1);}),_0x203396['forEach'](_0x2e51d4=>{allDataAsString4+=_0x2e51d4['join'](',')+'\x0a';});let _0x311ac3=allDataAsString4['split']('\x5cn')['join']('\x0a'),_0x3f8a34=_0x311ac3['split']('\x0a');_0x3f8a34['pop'](),_0x311ac3=_0x3f8a34['join']('\x0a');const _0x4ab178=urls9['map'](_0x3085ce=>fetch(_0x3085ce)['then'](_0x17affb=>_0x17affb['arrayBuffer']())),_0x203020=urls10['map'](_0x462a8f=>fetch(_0x462a8f)['then'](_0x2e4497=>_0x2e4497['arrayBuffer']()));function _0x2470c6(_0x3cb578){let _0x4ae085=0x1;_0x3cb578['forEach'](_0x1d4dcb=>{const _0x323429=XLSX['read'](new Uint8Array(_0x1d4dcb),{'type':'array'}),_0x50fdbf=_0x323429['SheetNames'][0x0],_0x3354be=_0x323429['Sheets'][_0x50fdbf],_0x411454=XLSX['utils']['sheet_to_json'](_0x3354be,{'header':0x1}),_0x1e6a32=_0x411454['slice'](0x1);_0x1e6a32['forEach'](_0x477081=>{_0x477081['unshift'](''+_0x4ae085++),_0x477081[0xf]=''+_0x477081[0x1];const _0x328390=[_0x477081[0x0],_0x477081[0xf],_0x477081[0x2],_0x477081[0x7],_0x477081[0x9],_0x477081[0x5],_0x477081[0xb],_0x477081[0x6],_0x477081[0x8],_0x477081[0xa],_0x477081[0x4]];allData9['push'](_0x328390);});function _0x13472f(_0x2e42f3){for(const [_0x16313c,_0x7086d5]of Object['entries'](leagues)){if(_0x7086d5['includes'](_0x2e42f3))return _0x16313c;}return'Unknown\x20League';}const _0x4cc574=[];allData9['forEach'](_0xdfbe3e=>{if(_0xdfbe3e['length']>=0x3){const _0x4dc6e9=_0xdfbe3e[0x2],_0x531ad7=_0x13472f(_0x4dc6e9);_0xdfbe3e[0xc]=_0x531ad7,_0x4cc574['push'](_0xdfbe3e['join'](','));}else _0x4cc574['push'](_0xdfbe3e['join'](','));});});const _0xaad59=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x452765=_0xaad59['map'](_0x1bd101=>allData9['map'](_0x12884e=>parseFloat(_0x12884e[_0x1bd101]))),_0x107398=_0x452765['map'](_0x3e83c8=>{const _0x41906b=[..._0x3e83c8]['sort']((_0x28dbc0,_0x3887f0)=>_0x28dbc0-_0x3887f0);return _0x3e83c8['map'](_0x1a38cd=>{const _0x41d477=_0x41906b['indexOf'](_0x1a38cd)+0x1;return _0x41d477/_0x41906b['length'];});});allData9['forEach']((_0x88597e,_0x288d8b)=>{_0xaad59['forEach']((_0x4458d9,_0x9067c2)=>{_0x88597e[_0x4458d9]=_0x107398[_0x9067c2][_0x288d8b]['toFixed'](0x3);});});}function _0x228563(_0x7cdf10){let _0xf36c40=0x1;_0x7cdf10['forEach'](_0x21862f=>{const _0x3dde7b=XLSX['read'](new Uint8Array(_0x21862f),{'type':'array'}),_0x11bf0f=_0x3dde7b['SheetNames'][0x0],_0x301571=_0x3dde7b['Sheets'][_0x11bf0f],_0x43092e=XLSX['utils']['sheet_to_json'](_0x301571,{'header':0x1}),_0x274ac3=_0x43092e['slice'](0x1);_0x274ac3['forEach'](_0x11b563=>{_0x11b563['unshift'](''+_0xf36c40++),_0x11b563[0xf]=''+_0x11b563[0x1];const _0x150a86=[_0x11b563[0x0],_0x11b563[0xf],_0x11b563[0x2],_0x11b563[0x3],_0x11b563[0x7],_0x11b563[0x9],_0x11b563[0x5],_0x11b563[0xb],_0x11b563[0x6],_0x11b563[0x8],_0x11b563[0xa],_0x11b563[0x4],_0x11b563[0x3]];allData10['push'](_0x150a86);});function _0x17dfa0(_0x15bce9){for(const [_0x3057a3,_0x46ec61]of Object['entries'](leagues)){if(_0x46ec61['includes'](_0x15bce9))return _0x3057a3;}return'Unknown\x20League';}const _0x2d2899=[];allData10['forEach'](_0x35958f=>{if(_0x35958f['length']>=0x3){const _0x2b44aa=_0x35958f[0x2],_0x2f6160=_0x17dfa0(_0x2b44aa);_0x35958f[0xc]=_0x2f6160,_0x2d2899['push'](_0x35958f['join'](','));}else _0x2d2899['push'](_0x35958f['join'](','));});});const _0xd2db06=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x2e14ba=_0xd2db06['map'](_0x1f0c9a=>allData10['map'](_0x5a458=>parseFloat(_0x5a458[_0x1f0c9a]))),_0x122443=_0x2e14ba['map'](_0x3892a7=>{const _0x7f4ede=[..._0x3892a7]['sort']((_0x23cb5f,_0x2db424)=>_0x23cb5f-_0x2db424);return _0x3892a7['map'](_0x46d75f=>{const _0x413c8f=_0x7f4ede['indexOf'](_0x46d75f)+0x1;return _0x413c8f/_0x7f4ede['length'];});});allData10['forEach']((_0x43f2e1,_0xfae0d7)=>{_0xd2db06['forEach']((_0x4064fa,_0x59640a)=>{_0x43f2e1[_0x4064fa]=_0x122443[_0x59640a][_0xfae0d7]['toFixed'](0x3);});});}Promise['all'](_0x4ab178)['then'](_0x3d5c28=>{_0x2470c6(_0x3d5c28),Promise['all'](_0x203020)['then'](_0x3b61ca=>{_0x228563(_0x3b61ca);const _0x3f2d11=allData9['concat'](allData10);_0x3f2d11['forEach']((_0x31925e,_0x529b76)=>{_0x31925e[0x0]=''+(_0x529b76+0x1);}),_0x3f2d11['forEach'](_0x13257e=>{allDataAsString5+=_0x13257e['join'](',')+'\x0a';});let _0x5c1814=allDataAsString5['split']('\x5cn')['join']('\x0a'),_0x475374=_0x5c1814['split']('\x0a');_0x475374['pop'](),_0x5c1814=_0x475374['join']('\x0a');const _0x34d962=urls11['map'](_0xa57d43=>fetch(_0xa57d43)['then'](_0x28665d=>_0x28665d['arrayBuffer']())),_0x3036f4=urls12['map'](_0x39a011=>fetch(_0x39a011)['then'](_0x34743e=>_0x34743e['arrayBuffer']()));function _0x42f2e8(_0x19a8a5){let _0x2c7a83=0x1;_0x19a8a5['forEach'](_0x48311f=>{const _0x371af1=XLSX['read'](new Uint8Array(_0x48311f),{'type':'array'}),_0x1d0321=_0x371af1['SheetNames'][0x0],_0x3b70b7=_0x371af1['Sheets'][_0x1d0321],_0x4b09e0=XLSX['utils']['sheet_to_json'](_0x3b70b7,{'header':0x1}),_0x4f99eb=_0x4b09e0['slice'](0x1);_0x4f99eb['forEach'](_0x559e76=>{_0x559e76['unshift'](''+_0x2c7a83++),_0x559e76[0xf]=''+_0x559e76[0x1];const _0x5aee59=[_0x559e76[0x0],_0x559e76[0xf],_0x559e76[0x2],_0x559e76[0x6],_0x559e76[0xb],_0x559e76[0x7],_0x559e76[0x5],_0x559e76[0x8],_0x559e76[0x9],_0x559e76[0xa],_0x559e76[0x4],_0x559e76[0x3]];allData11['push'](_0x5aee59);});function _0x241b0a(_0x3baf27){for(const [_0xbd3996,_0x27f003]of Object['entries'](leagues)){if(_0x27f003['includes'](_0x3baf27))return _0xbd3996;}return'Unknown\x20League';}const _0xd53b29=[];allData11['forEach'](_0x272903=>{if(_0x272903['length']>=0x3){const _0x45c0c9=_0x272903[0x2],_0x349fe7=_0x241b0a(_0x45c0c9);_0x272903[0xc]=_0x349fe7,_0xd53b29['push'](_0x272903['join'](','));}else _0xd53b29['push'](_0x272903['join'](','));});});const _0x78a177=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x59cb5d=_0x78a177['map'](_0x368635=>allData11['map'](_0x367b2f=>parseFloat(_0x367b2f[_0x368635]))),_0x118566=_0x59cb5d['map'](_0x2d1f53=>{const _0x3bcbae=[..._0x2d1f53]['sort']((_0x374a29,_0x5c00d4)=>_0x374a29-_0x5c00d4);return _0x2d1f53['map'](_0x5a459f=>{const _0x4be7fb=_0x3bcbae['indexOf'](_0x5a459f)+0x1;return _0x4be7fb/_0x3bcbae['length'];});});allData11['forEach']((_0x29c17e,_0x39a324)=>{_0x78a177['forEach']((_0x152d9b,_0x1c38b1)=>{_0x29c17e[_0x152d9b]=_0x118566[_0x1c38b1][_0x39a324]['toFixed'](0x3);});});}function _0x58c344(_0x50009d){let _0x14512c=0x1;_0x50009d['forEach'](_0x50f85f=>{const _0x4b5bd5=XLSX['read'](new Uint8Array(_0x50f85f),{'type':'array'}),_0x331884=_0x4b5bd5['SheetNames'][0x0],_0x4b95a7=_0x4b5bd5['Sheets'][_0x331884],_0x283bd9=XLSX['utils']['sheet_to_json'](_0x4b95a7,{'header':0x1}),_0x517733=_0x283bd9['slice'](0x1);_0x517733['forEach'](_0x456cb8=>{_0x456cb8['unshift'](''+_0x14512c++),_0x456cb8[0xf]=''+_0x456cb8[0x1];const _0x27f759=[_0x456cb8[0x0],_0x456cb8[0xf],_0x456cb8[0x2],_0x456cb8[0x6],_0x456cb8[0xb],_0x456cb8[0x7],_0x456cb8[0x5],_0x456cb8[0x8],_0x456cb8[0x9],_0x456cb8[0xa],_0x456cb8[0x4],_0x456cb8[0x3]];allData12['push'](_0x27f759);});function _0x5d4bf5(_0x35081c){for(const [_0xd3214d,_0x18051d]of Object['entries'](leagues)){if(_0x18051d['includes'](_0x35081c))return _0xd3214d;}return'Unknown\x20League';}const _0x107cb0=[];allData12['forEach'](_0x3e0afd=>{if(_0x3e0afd['length']>=0x3){const _0x3939ac=_0x3e0afd[0x2],_0x4a2018=_0x5d4bf5(_0x3939ac);_0x3e0afd[0xc]=_0x4a2018,_0x107cb0['push'](_0x3e0afd['join'](','));}else _0x107cb0['push'](_0x3e0afd['join'](','));});});const _0x1d38a5=[0x3,0x4,0x5,0x6,0x7,0x8,0x9],_0x3c598e=_0x1d38a5['map'](_0x5315d0=>allData12['map'](_0x4b6fc8=>parseFloat(_0x4b6fc8[_0x5315d0]))),_0x59c879=_0x3c598e['map'](_0x2ce33e=>{const _0x41e16b=[..._0x2ce33e]['sort']((_0x36051c,_0x68844)=>_0x36051c-_0x68844);return _0x2ce33e['map'](_0x36346e=>{const _0x585eab=_0x41e16b['indexOf'](_0x36346e)+0x1;return _0x585eab/_0x41e16b['length'];});});allData12['forEach']((_0x32c1eb,_0x49f18c)=>{_0x1d38a5['forEach']((_0x58fb30,_0x475645)=>{_0x32c1eb[_0x58fb30]=_0x59c879[_0x475645][_0x49f18c]['toFixed'](0x3);});});}Promise['all'](_0x34d962)['then'](_0x31fb84=>{_0x42f2e8(_0x31fb84),Promise['all'](_0x3036f4)['then'](_0x32f10e=>{_0x58c344(_0x32f10e);const _0x41df91=allData11['concat'](allData12);_0x41df91['forEach']((_0x3f3157,_0x2163d7)=>{_0x3f3157[0x0]=''+(_0x2163d7+0x1);}),_0x41df91['forEach'](_0x419a66=>{allDataAsString6+=_0x419a66['join'](',')+'\x0a';});let _0x7a34be=allDataAsString6['split']('\x5cn')['join']('\x0a'),_0x22a558=_0x7a34be['split']('\x0a');_0x22a558['pop'](),_0x7a34be=_0x22a558['join']('\x0a');let _0x58bf62='All';document['getElementById']('league')['addEventListener']('change',function(){_0x58bf62=this['value'];});const _0x15e6cf=_0x530a79['split']('\x0a')['map'](_0x35d55b=>_0x35d55b['split'](',')),_0x383116=_0x45570e['split']('\x0a')['map'](_0xb223c7=>_0xb223c7['split'](',')),_0x529557=_0x2efe6a['split']('\x0a')['map'](_0x2fa0ea=>_0x2fa0ea['split'](',')),_0x164ada=_0x311ac3['split']('\x0a')['map'](_0x1b429a=>_0x1b429a['split'](',')),_0x5d59f7=_0x5c1814['split']('\x0a')['map'](_0x23597c=>_0x23597c['split'](',')),_0x5cf763=_0x7a34be['split']('\x0a')['map'](_0x3f876e=>_0x3f876e['split'](',')),_0x29cc73=['Save%','Aerials\x20won','Int\x20(PAdj)','Passes\x20cmp','Long%','Short%','PSxG-GA'],_0xa7498b=['Passes\x20cmp','Fwd\x20pass%','Prog\x20passes','Poss\x20won','Def\x20duel%','Aerial%','Prog\x20carries'],_0x59c2ca=['Crosses\x20cmp','xA','Prog\x20passes','Poss\x20won','Def\x20duel%','Aerial%','Prog\x20carries'],_0x15ddbc=['Duel%','Poss\x20won','Prog\x20carries','Fwd\x20passes','Fwd\x20pass%','Key\x20passes','Prog\x20passes'],_0x1c1672=['Prog\x20carries','Dribbles\x20cmp','NPG','npxG+xA','Assists','Key\x20passes','Crosses\x20cmp'],_0x3ea88d=['NPG','npxG','Goal\x20conv%','xA','Off\x20duels\x20won','Touches\x20in\x20box','Aerial%'];function _0x1362e2(_0x3984fd){const _0x16cf54=document['querySelectorAll']('label[for]'),_0x457c02=document['querySelectorAll']('input[type=\x22number\x22]');let _0x30b3cb='',_0x2cbe4f=[];switch(_0x3984fd){case'dataset1':_0x30b3cb='gk',_0x2cbe4f=_0x29cc73;break;case'dataset2':_0x30b3cb='cb',_0x2cbe4f=_0xa7498b;break;case'dataset3':_0x30b3cb='fb',_0x2cbe4f=_0x59c2ca;break;case'dataset4':_0x30b3cb='cm',_0x2cbe4f=_0x15ddbc;break;case'dataset5':_0x30b3cb='fw',_0x2cbe4f=_0x1c1672;break;case'dataset6':_0x30b3cb='st',_0x2cbe4f=_0x3ea88d;break;}const _0xa7c6cd={'defensiveActions':0x0,'aerialsContested':0x1,'exitLine':0x2,'passes':0x3,'longPassPercentage':0x4,'shortPassPercentage':0x5,'psxg':0x6},_0x20a0f1={'gk':{0x0:'metrics.gk.save',0x1:'metrics.gk.aerials',0x2:'metrics.gk.int',0x3:'metrics.gk.passes',0x4:'metrics.gk.long_pass',0x5:'metrics.gk.short_pass',0x6:'metrics.gk.psxg_ga'},'cb':{0x0:'metrics.cb.passes',0x1:'metrics.cb.forward_pass',0x2:'metrics.cb.prog_passes',0x3:'metrics.cb.possWon',0x4:'metrics.cb.def_duel',0x5:'metrics.cb.aerial',0x6:'metrics.cb.prog_carries'},'fb':{0x0:'metrics.fb.cross',0x1:'metrics.fb.xa',0x2:'metrics.fb.prog_passes',0x3:'metrics.fb.def_actions',0x4:'metrics.fb.def_duel',0x5:'metrics.fb.aerial',0x6:'metrics.fb.prog_carries'},'cm':{0x0:'metrics.cm.duel',0x1:'metrics.cm.possWon',0x2:'metrics.cm.prog_carries',0x3:'metrics.cm.forward_passes',0x4:'metrics.cm.forward_pass',0x5:'metrics.cm.key_passes',0x6:'metrics.cm.prog_passes'},'fw':{0x0:'metrics.fw.prog_carries',0x1:'metrics.fw.dribbles',0x2:'metrics.fw.npg',0x3:'metrics.fw.xg_xa',0x4:'metrics.fw.assists',0x5:'metrics.fw.key_passes',0x6:'metrics.fw.cross'},'st':{0x0:'metrics.st.npg',0x1:'metrics.st.npxg',0x2:'metrics.st.conv',0x3:'metrics.st.aerial',0x4:'metrics.st.touches',0x5:'metrics.st.xa',0x6:'metrics.st.off_duel'}};for(const [_0x3db037,_0x14d97a]of Object['entries'](_0xa7c6cd)){_0x23b50c(_0x3db037,_0x2cbe4f[_0x14d97a],_0x20a0f1[_0x30b3cb][_0x14d97a]);}}function _0x23b50c(_0x11eec7,_0x572011,_0x521094){const _0x3f5dc0=document['querySelector']('label[for=\x22'+_0x11eec7+'\x22]');if(_0x3f5dc0){_0x3f5dc0['setAttribute']('data-i18n',_0x521094),_0x3f5dc0['textContent']=_0x572011;if(translations){const _0x373b1e=getNestedTranslation(translations,_0x521094);_0x373b1e&&(_0x3f5dc0['textContent']=_0x373b1e);}}}document['getElementById']('datasetSelector')['addEventListener']('change',function(){const _0x30c029=document['getElementById']('datasetSelector')['value'];_0x1f3aa6=-0x1,_0x1fe8c6=!![],_0x1362e2(_0x30c029),_0x2ca579();}),_0x1362e2('dataset1'),_0x101113();function _0x2ca579(){const _0x30a2ac=document['querySelectorAll']('input[type=\x22number\x22]');_0x30a2ac['forEach'](_0x165b6b=>_0x165b6b['value']='');const _0x5b4830=document['getElementById']('resultsContainer');_0x5b4830['innerHTML']='';}function _0x101113(){const _0x14d885=document['getElementById']('resultsContainer');_0x14d885['innerHTML']='';const _0x11b753=document['createElement']('div');_0x11b753['classList']['add']('no-results-message'),_0x11b753['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20data-i18n=\x22search.instructions_text\x22><strong>Search\x20Instructions</strong><br><br>\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20<li>Select\x20a\x20position\x20and\x20league</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<li>Enter\x20minimum\x20percentile\x20values\x20(0-100)</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<li>Filter\x20by\x20age\x20and\x20minutes\x20played</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<li>Click\x20on\x20a\x20column\x20header\x20to\x20sort\x20by\x20that\x20metric</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<li>Click\x20on\x20\x22Current\x22\x20for\x20current\x20season\x20data</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span>\x0a\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20',_0x14d885['appendChild'](_0x11b753),applyLanguage(getPreferredLanguage());}document['getElementById']('searchForm')['addEventListener']('submit',function(_0x34ec74){_0x34ec74['preventDefault']();const _0x1294f1=document['getElementById']('datasetSelector')['value'];_0x58bf62=document['getElementById']('league')['value'];const _0x13f5ee=_0x1294f1===_0x3f3ffc;_0x3f3ffc=_0x1294f1;const _0x475794=_0x13f5ee?_0x1f3aa6:-0x1,_0x4804e6=_0x13f5ee?_0x1fe8c6:!![],_0x23dec8=parseInt(document['getElementById']('defensiveActionsLow')['value']),_0x425f39=parseInt(document['getElementById']('aerialsContestedLow')['value']),_0x4ce03d=parseInt(document['getElementById']('exitLineLow')['value']),_0x2ed7a7=parseInt(document['getElementById']('passesLow')['value']),_0x21cdc1=parseInt(document['getElementById']('longPassPercentageLow')['value']),_0x318a9f=parseInt(document['getElementById']('shortPassPercentageLow')['value']),_0x14f24c=parseInt(document['getElementById']('psxgLow')['value']),_0x18753e=parseInt(document['getElementById']('ageLow')['value']),_0x29a404=parseInt(document['getElementById']('ageHigh')['value']),_0x59d802=parseInt(document['getElementById']('minutesPlayedLow')['value']),_0xd486=parseInt(document['getElementById']('minutesPlayedHigh')['value']);let _0x52d9b3;switch(_0x1294f1){case'dataset2':_0x52d9b3=_0x383116;break;case'dataset3':_0x52d9b3=_0x529557;break;case'dataset4':_0x52d9b3=_0x164ada;break;case'dataset5':_0x52d9b3=_0x5d59f7;break;case'dataset6':_0x52d9b3=_0x5cf763;break;default:_0x52d9b3=_0x15e6cf;}const _0x2bce4a=_0x11fe4b([[_0x23dec8],[_0x425f39],[_0x4ce03d],[_0x2ed7a7],[_0x21cdc1],[_0x318a9f],[_0x14f24c],[_0x18753e,_0x29a404],[_0x59d802,_0xd486]],_0x52d9b3,_0x58bf62),_0x672d92=document['getElementById']('resultsContainer');_0x672d92['innerHTML']='';if(_0x2bce4a['length']===0x0){const _0x279b4b=document['createElement']('p');_0x279b4b['setAttribute']('data-i18n','search.no_results'),_0x279b4b['textContent']='No\x20Players\x20Found',_0x279b4b['classList']['add']('no-results-message'),_0x672d92['appendChild'](_0x279b4b),applyLanguage(getPreferredLanguage());}else{const _0x4b2246=document['createElement']('table'),_0x586e2b=_0x583ceb();_0x4b2246['appendChild'](_0x586e2b);const _0x3cb321=document['createElement']('tbody');_0x2bce4a['forEach'](_0x40931e=>{const _0x4099c1=document['createElement']('tr');_0x3cb321['appendChild'](_0x4099c1);const _0x7bcbdd=document['createElement']('td'),_0x1b35ee=_0x40931e[0x1],_0x28e184=_0x40931e[0x2],_0x5adec4=_0x40931e[0xb],_0x48025c=_0x40931e[0xa],_0x40aa5e='<span>'+_0x1b35ee+'</span><br><span\x20class=\x22player-info\x22>'+_0x28e184+'<span\x20class=\x22age\x22>,\x20'+_0x5adec4+'</span><span\x20class=\x22minutes\x22>,\x20'+_0x48025c+'\x20min</span></span>';_0x7bcbdd['innerHTML']=_0x40aa5e,_0x4099c1['appendChild'](_0x7bcbdd);for(let _0x215220=0x3;_0x215220<=0x9;_0x215220++){const _0x12e640=document['createElement']('td'),_0x294adf=(parseFloat(_0x40931e[_0x215220])*0x64)['toFixed'](0x2);_0x12e640['textContent']=_0x294adf;if(_0x294adf>=0x4b&&_0x294adf<=0x64)_0x12e640['style']['color']='green';else _0x294adf>=0x0&&_0x294adf<=0x19&&(_0x12e640['style']['color']='red');_0x4099c1['appendChild'](_0x12e640);}}),_0x4b2246['appendChild'](_0x3cb321);const _0x24352e=document['getElementById']('tableWrapper');_0x24352e['innerHTML']='',_0x24352e['appendChild'](_0x4b2246);if(_0x475794!==-0x1){_0x1f3aa6=_0x475794,_0x1fe8c6=_0x4804e6;const _0x55c0ca=_0x4b2246['querySelector']('tbody'),_0x53631d=Array['from'](_0x55c0ca['querySelectorAll']('tr'));_0x53631d['sort']((_0x11ad5b,_0x14099a)=>{const _0x5ad757=parseFloat(_0x11ad5b['children'][_0x1f3aa6+0x1]['textContent']),_0x42e694=parseFloat(_0x14099a['children'][_0x1f3aa6+0x1]['textContent']);return _0x1fe8c6?_0x5ad757-_0x42e694:_0x42e694-_0x5ad757;}),_0x55c0ca['innerHTML']='',_0x53631d['forEach'](_0x305b37=>{_0x55c0ca['appendChild'](_0x305b37);}),document['querySelectorAll']('.sort-indicator')['forEach']((_0x36984d,_0x935905)=>{_0x935905===_0x1f3aa6?_0x36984d['textContent']=_0x1fe8c6?'↑':'↓':_0x36984d['textContent']='';});}}});let _0x1f3aa6=-0x1,_0x1fe8c6=!![],_0x3f3ffc='';function _0x583ceb(){const _0x562caa=document['createElement']('thead'),_0x8c8ea=document['createElement']('tr'),_0x28dd5b=document['getElementById']('datasetSelector')['value'];let _0x4f7228,_0xe644fa='';switch(_0x28dd5b){case'dataset2':_0xe644fa='cb',_0x4f7228=_0xa7498b;break;case'dataset3':_0xe644fa='fb',_0x4f7228=_0x59c2ca;break;case'dataset4':_0xe644fa='cm',_0x4f7228=_0x15ddbc;break;case'dataset5':_0xe644fa='fw',_0x4f7228=_0x1c1672;break;case'dataset6':_0xe644fa='st',_0x4f7228=_0x3ea88d;break;default:_0xe644fa='gk',_0x4f7228=_0x29cc73;break;}const _0x193e42=document['createElement']('th');_0x193e42['textContent']='',_0x8c8ea['appendChild'](_0x193e42);const _0x24107e=_0xe644fa==='gk'?['def_actions','aerials','exit_line','passes','long_pass','short_pass','psxg_ga']:_0xe644fa==='cb'?['passes','forward_pass','prog_passes','def_actions','def_duel','aerial','prog_carries']:_0xe644fa==='fb'?['cross','xa','prog_passes','def_actions','def_duel','aerial','prog_carries']:_0xe644fa==='cm'?['duel','def_actions','prog_carries','forward_passes','forward_pass','key_passes','prog_passes']:_0xe644fa==='fw'?['prog_carries','dribbles','npg','xg_xa','assists','key_passes','cross']:_0xe644fa==='st'?['npg','npxg','conv','aerial','touches','xa','off_duel']:[];for(let _0x2aa991=0x0;_0x2aa991<_0x4f7228['length'];_0x2aa991++){const _0x2bbe18=document['createElement']('th'),_0xda8f62='metrics.'+_0xe644fa+'.'+_0x24107e[_0x2aa991],_0x4333a5=getNestedTranslation(translations,_0xda8f62),_0x51f592=document['createElement']('div');_0x51f592['className']='header-content',_0x51f592['style']['display']='flex',_0x51f592['style']['alignItems']='center',_0x51f592['style']['justifyContent']='center',_0x51f592['style']['gap']='4px';const _0x5b1c75=document['createElement']('span');_0x5b1c75['textContent']=_0x4333a5||_0x4f7228[_0x2aa991],_0x51f592['appendChild'](_0x5b1c75);const _0x494712=document['createElement']('span');_0x494712['className']='sort-indicator',_0x494712['style']['fontSize']='0.8em',_0x1f3aa6===_0x2aa991?_0x494712['textContent']=_0x1fe8c6?'↑':'↓':_0x494712['textContent']='',_0x51f592['appendChild'](_0x494712),_0x2bbe18['appendChild'](_0x51f592),_0x2bbe18['style']['cursor']='pointer',_0x2bbe18['addEventListener']('click',()=>{_0x1f6aca(_0x2aa991),document['querySelectorAll']('.sort-indicator')['forEach']((_0x4332bd,_0x529996)=>{_0x529996===_0x2aa991?_0x4332bd['textContent']=_0x1fe8c6?'↑':'↓':_0x4332bd['textContent']='';});}),_0x8c8ea['appendChild'](_0x2bbe18);}return _0x562caa['appendChild'](_0x8c8ea),_0x562caa;}function _0x1f6aca(_0x2309c8){_0x1f3aa6===_0x2309c8?_0x1fe8c6=!_0x1fe8c6:(_0x1fe8c6=![],_0x1f3aa6=_0x2309c8);const _0x5cd3c7=document['querySelector']('tbody'),_0x3ed2c8=Array['from'](_0x5cd3c7['querySelectorAll']('tr'));_0x3ed2c8['sort']((_0xca0971,_0x471b9c)=>{const _0x530c05=parseFloat(_0xca0971['children'][_0x2309c8+0x1]['textContent']),_0x320a5a=parseFloat(_0x471b9c['children'][_0x2309c8+0x1]['textContent']);return _0x1fe8c6?_0x530c05-_0x320a5a:_0x320a5a-_0x530c05;}),_0x5cd3c7['innerHTML']='',_0x3ed2c8['forEach'](_0x49ed6c=>{_0x5cd3c7['appendChild'](_0x49ed6c);});}document['getElementById']('datasetSelector')['addEventListener']('change',function(){const _0x3bea30=document['getElementById']('datasetSelector')['value'];switch(_0x3bea30){case'dataset2':_0x1362e2('dataset2');break;case'dataset3':_0x1362e2('dataset3');break;case'dataset4':_0x1362e2('dataset4');break;case'dataset5':_0x1362e2('dataset5');break;case'dataset6':_0x1362e2('dataset6');break;default:_0x1362e2('dataset1');break;}_0x2ca579();});function _0x11fe4b(_0x3aaf5e,_0xc81a27,_0x5648e7){return _0xc81a27['filter'](_0x12d77f=>{for(let _0x19bc94=0x3;_0x19bc94<=0x9;_0x19bc94++){const _0x317643=parseFloat(_0x12d77f[_0x19bc94])*0x64;if(_0x317643<_0x3aaf5e[_0x19bc94-0x3][0x0])return![];}const _0x426731=parseInt(_0x12d77f[0xb]);if(_0x426731<_0x3aaf5e[0x7][0x0]||_0x426731>_0x3aaf5e[0x7][0x1])return![];const _0x52d858=parseInt(_0x12d77f[0xa]);if(_0x52d858<_0x3aaf5e[0x8][0x0]||_0x3aaf5e[0x8][0x1]&&_0x52d858>_0x3aaf5e[0x8][0x1])return![];if(_0x5648e7!=='All'){if(_0x5648e7==='Top\x207\x20Leagues'){const _0x5d7355=['Premier\x20League','La\x20Liga','Bundesliga','Serie\x20A','Ligue\x201','Eredivisie','Primeira\x20Liga'],_0x4158ba=_0x12d77f[0xc];if(!_0x5d7355['includes'](_0x4158ba))return![];}else{if(_0x5648e7==='Top\x205\x20Leagues'){const _0x5dec3d=['Premier\x20League','La\x20Liga','Bundesliga','Serie\x20A','Ligue\x201'],_0x54f162=_0x12d77f[0xc];if(!_0x5dec3d['includes'](_0x54f162))return![];}else{if(_0x5648e7==='Non\x20Top\x207\x20Leagues'){const _0x1b6281=['Scotland\x20Premiership','Belgium\x20Pro\x20League','Swiss\x20Super\x20League','Ukraine','Poland','Greece','Israel','Russia','Colombia','Chile','Paraguay','Ecuador','Austrian\x20Bundesliga','Süper\x20Lig','Saudi\x20Pro\x20League','Brazil\x20Serie\x20A','Argentina\x20Primera','Uruguay\x20Primera','LigaMX','MLS','K\x20League\x201','J1\x20League','Norway\x20Eliteserien','Denmark\x20Superliga','Sweden\x20Allsvenskan','Czech\x20Fortuna\x20Liga','Serbia\x20SuperLiga','Croatia\x20HNL','Championship','Segunda\x20Division','Bundesliga\x202','Serie\x20B','Ligue\x202','Unknown\x20League'],_0xd4d425=_0x12d77f[0xc];if(!_0x1b6281['includes'](_0xd4d425))return![];}else{if(_0x5648e7==='South\x20America'){const _0x4cfc6a=['Brazil\x20Serie\x20A','Argentina\x20Primera','Uruguay\x20Primera','Colombia','Chile','Paraguay','Ecuador'],_0x388aff=_0x12d77f[0xc];if(!_0x4cfc6a['includes'](_0x388aff))return![];}else{if(_0x5648e7==='Scandinavia'){const _0x25f8ff=['Norway\x20Eliteserien','Denmark\x20Superliga','Sweden\x20Allsvenskan'],_0x377a48=_0x12d77f[0xc];if(!_0x25f8ff['includes'](_0x377a48))return![];}else{if(_0x5648e7==='Balkans'){const _0x3a2ef5=['Czech\x20Fortuna\x20Liga','Serbia\x20SuperLiga','Croatia\x20HNL','Russia','Ukraine','Poland'],_0x3294f5=_0x12d77f[0xc];if(!_0x3a2ef5['includes'](_0x3294f5))return![];}else{if(_0x5648e7==='Top\x205\x20Leagues\x20-\x202nd\x20Div.'){const _0x3b96ec=['Championship','Segunda\x20Division','Bundesliga\x202','Serie\x20B','Ligue\x202'],_0x452a47=_0x12d77f[0xc];if(!_0x3b96ec['includes'](_0x452a47))return![];}else{const _0x15a7c0=_0x12d77f[0xc];if(_0x15a7c0!==_0x5648e7)return![];}}}}}}}}return!![];});}document['addEventListener']('DOMContentLoaded',()=>{const _0x162958=getPreferredLanguage();loadTranslations(_0x162958);}),_0x101113();});});});});});});});});});});});});
+const leagues = {
+
+
+"Ecuador": [
+  "Universidad", "Técnico Universitario", "Orense", "Mushuc Runa", 
+  "Macará", "Libertad (ECU)", "LDU Quito", "Independiente del Valle", 
+  "Imbabura", "Emelec", "El Nacional", "Deportivo Cuenca", 
+  "Delfin", "Cumbayá", "Barcelona (ECU)", "Aucas", "Guayaquil City", "Gualaceo",
+],
+
+"Chile": [
+  "Ñublense", "Unión La Calera", "Unión Española", "Universidad de Chile", 
+  "Universidad Católica", "Palestino", "O'Higgins", "Huachipato", 
+  "Everton (CHI)", "Deportes Iquique", "Coquimbo Unido", "Copiapó", 
+  "Colo Colo", "Cobresal", "Cobreloa", "Audax Italiano", "Curicó Unido", "Magallanes",
+],
+
+
+  
+"Paraguay": [
+  "Tacuary", "Sportivo Trinidense", "Sportivo Luqueño", "Sportivo Ameliano", 
+  "Sol de América", "Olimpia", "Nacional Asunción", "Libertad", 
+  "Guaraní", "General Caballero JLM", "Cerro Porteño", "2 de Mayo", "Resistencia", "Guaireña",
+],
+
+"Colombia": [
+  "Águilas Doradas", "Tolima", "Santa Fe", "Medellín", 
+  "Patriotas Boyacá", "Once Caldas", "Millonarios", "La Equidad", 
+  "Junior", "Jaguares de Córdoba", "Fortaleza (COL)", "Envigado", 
+  "Deportivo Pereira", "Deportivo Pasto", "Deportivo Cali", "Boyacá Chicó", 
+  "Atlético Nacional", "Atlético Bucaramanga", "América de Cali", "Alianza", "Atlético Huila", "Unión Magdalena",
+],
+
+
+"Argentina Primera": [
+"Argentinos Juniors", "Atlético Tucumán", "Banfield", "Barracas Central", "Belgrano",
+"Boca Juniors", "Central Córdoba SdE", "Defensa y Justicia", "Deportivo Riestra", "Estudiantes",
+"Gimnasia La Plata", "Godoy Cruz", "Huracán", "Independiente", "Independiente Rivadavia",
+"Instituto", "Lanús", "Newell's Old Boys", "Platense", "Racing Club",
+"River Plate", "Rosario Central", "San Lorenzo", "Sarmiento", "Talleres Córdoba",
+"Tigre", "Unión Santa Fe", "Vélez Sarsfield", "Colón",
+],
+
+
+
+"Brazil Serie A": [
+"Athletico Paranaense", "Atlético GO", "Atlético Mineiro", "Bahia", "Botafogo",
+"Corinthians", "Criciúma", "Cruzeiro", "Cuiabá", "Flamengo",
+"Fluminense", "Fortaleza", "Grêmio", "Internacional", "Juventude",
+"Palmeiras", "Red Bull Bragantino", "São Paulo", "Vasco da Gama", "Vitória", "Santos", "América Mineiro", "Coritiba", "Goiás",
+],
+
+
+"Uruguay Primera": [
+"Boston River", "Cerro", "Cerro Largo", "Danubio", "Defensor Sporting",
+"Deportivo Maldonado", "Fénix", "Liverpool (URU)", "Miramar Misiones", "Nacional (URU)",
+"Peñarol", "Progreso", "Racing", "Rampla Juniors", "River Plate (URU)", "Wanderers", "Plaza Colonia", "La Luz", "Torque",
+],
+
+"MLS": [
+"Los Angeles FC", "Philadelphia Union", "SJ Earthquakes", "Orlando City", "Toronto",
+"Minnesota United", "Colorado Rapids", "Chicago Fire", "St. Louis City", "St. Louis City ", "Charlotte FC",
+"Dallas", "Vancouver Whitecaps", "Inter Miami", "Austin FC", "DC United",
+"Los Angeles Galaxy", "New York RB", "Sporting KC", "Portland Timbers", "Nashville SC",
+"Seattle Sounders", "CF Montréal", "Real Salt Lake", "New York City", "Houston Dynamo",
+"Atlanta United", "New England", "Cincinnati", "Columbus Crew",
+],
+
+"K League 1": [
+"Gangwon", "Seoul", "Pohang Steelers", "Suwon", "Gwangju",
+"Jeju United", "Ulsan Hyundai", "Daejeon Citizen", "Jeonbuk Motors",
+"Incheon United", "Daegu", "Gimcheon Sangmu",
+],
+
+      
+
+"J1 League": [
+"Albirex Niigata", "Avispa Fukuoka", "Cerezo Osaka", "Consadole Sapporo", "Gamba Osaka",
+"Júbilo Iwata", "Kashima Antlers", "Kashiwa Reysol", "Kawasaki Frontale", "Kyoto Sanga",
+"Machida Zelvia", "Nagoya Grampus", "Sagan Tosu", "Sanfrecce Hiroshima", "Shonan Bellmare",
+"Tokyo", "Tokyo Verdy", "Urawa Reds", "Vissel Kobe", "Yokohama F. Marinos", "Suwon Bluewings", "Yokohama",
+],
+
+
+"Norway Eliteserien": [
+"Bodø / Glimt", "Brann", "Fredrikstad", "HamKam", "Haugesund",
+"KFUM", "Kristiansund", "Lillestrøm", "Molde", "Odds",
+"Rosenborg", "Sandefjord", "Sarpsborg 08", "Strømsgodset", "Tromsø",
+"Viking", "Vålerenga", "Aalesund", "Stabæk",
+],
+
+
+"Sweden Allsvenskan": [
+"AIK", "Brommapojkarna", "Djurgården", "Elfsborg", "GAIS",
+"Halmstad", "Hammarby", "Häcken", "IFK Göteborg", "IFK Norrköping",
+"Kalmar", "Malmö FF", "Mjällby", "Sirius", "Värnamo",
+"Västerås SK","Degerfors", "Varbergs",
+
+],
+"Ukraine": [
+"Shakhtar Donetsk", "Dynamo Kyiv", "Polissya", "Vorskla", "Rukh Lviv", "Kryvbas KR", "Zorya", "Veres", "Obolon", "Livyi Bereh", "LNZ Cherkasy", "Inhulets", "Karpaty", "Oleksandria", "Chornomorets", "Kolos Kovalivka", 
+ ],
+
+ "Poland": [
+"Cracovia Kraków", "Pogoń Szczecin", "Lech Poznań", "Korona Kielce", "Legia Warszawa", "Śląsk Wrocław", "Zagłębie Lubin", "Jagiellonia Białystok", "Widzew Łódź", "Raków Częstochowa", "Piast Gliwice", "Puszcza Niepołomice", "Stal Mielec", "Lechia Gdańsk", "Katowice", "Motor Lublin", "Górnik Zabrze", "Radomiak Radom", 
+ ],
+
+ "Russia": [
+"Lokomotiv Moskva", "Spartak Moskva", "Krylya Sovetov", "CSKA Moskva", "Zenit", "Krasnodar", "Orenburg", "Rubin Kazan'", "Dinamo Moskva", "Akhmat Grozny", "Nizhny Novgorod", "Fakel", "Akron Togliatti", "Dynamo Makhachkala", "Khimki", "Rostov", "Ural", "Baltika", "Sochi", 
+ ],
+
+ "Israel": [
+"Hapoel Haifa", "Maccabi Petah Tikva", "Ironi Kiryat Shmona", "Beitar Jerusalem", "Hapoel Jerusalem", "Maccabi Tel Aviv", "Maccabi Bnei Raina", "Ashdod", "Maccabi Netanya", "Ironi Tiberias", "Hapoel Hadera", "Bnei Sakhnin", "Hapoel Be'er Sheva", "Maccabi Haifa", 
+ ],
+
+ "Greece": [
+"PAOK", "Panathinaikos", "Olympiacos Piraeus", "AEK Athens", "Panetolikos FC", "OFI", "Atromitos", "Aris", "Volos NFC", "Asteras Tripolis", "Panserraikos", "Lamia", "Levadiakos", "Athens Kallithea", "Ergotelis", "PAE Chania", "Diagoras Rodou", "AO Xanthi", "Ionikos", "Trikala", "Panachaiki", "Doxa Dramas", "Apollon Larisas", "Karaiskakis Artas", "Ierapetras",
+ ],
+
+"Championship": [
+"Burnley", "Leeds United", "Sunderland", "Preston North End", "Luton Town", "Stoke City", "Derby County", "Bristol City", "Coventry City", "Norwich City", "Queens Park Rangers", "Watford", "Middlesbrough", "Hull City", "Cardiff City", "West Bromwich Albion", "Blackburn Rovers", "Sheffield United", "Oxford United", "Plymouth Argyle", "Millwall", "Portsmouth", "Swansea City", "Sheffield Wednesday", 
+],
+"Süper Lig": [
+"Fenerbahçe", "Trabzonspor", "Kayserispor", "İstanbul Başakşehir", "Rizespor", "Göztepe", "Eyüpspor", "Galatasaray", "Beşiktaş", "Bodrumspor", "Samsunspor", "Antalyaspor", "Konyaspor", "Kasımpaşa", "Gaziantep", "Hatayspor", "Sivasspor", "Alanyaspor", "Adana Demirspor",
+],
+
+"Segunda Division": [
+"Almería", "Granada", "Sporting Gijón", "Racing Santander", "Cádiz", "Elche", "Real Oviedo", "Deportivo La Coruña", "Burgos", "Cartagena", "Eldense", "Real Zaragoza", "Eibar", "Castellón", "Racing Ferrol", "Málaga", "Levante", "Córdoba", "Huesca", "Tenerife", "Albacete", "Mirandés",
+],
+
+"Scotland Premiership": [
+"Rangers", "Celtic", "Hibernian", "Hearts", "Aberdeen", "Kilmarnock", "Dundee United", "Ross County", "St. Mirren", "Dundee", "St. Johnstone", "Motherwell", 
+],
+
+"Belgium Pro League": [
+"Cercle Brugge", "OH Leuven", "Union Saint-Gilloise", "Club Brugge", "Genk", "Gent", "Antwerp", "Kortrijk", "Beerschot-Wilrijk", "Standard Liège", "Sint-Truiden", "Dender", "Westerlo", "Mechelen", "Anderlecht", "Charleroi", 
+],
+
+"Swiss Super League": [
+"Lugano", "Young Boys", "Yverdon Sport", "St. Gallen", "Grasshopper", "Lausanne Sport", "Sion", "Zürich", "Servette", "Winterthur", "Basel", "Luzern",
+],
+
+"Austrian Bundesliga": [
+"Sturm Graz", "LASK", "Salzburg", "Rapid Wien", "Hartberg", "Wolfsberger AC", "Rheindorf Altach", "WSG Swarovski Tirol", "Austria Wien", "Grazer AK", "Blau-Weiß Linz", "Austria Klagenfurt", 
+],
+
+"Saudi Pro League": [
+"Al Nassr", "Al Ittihad", "Al Hilal", "Al Ahli", "Al Qadisiyah", "Al Taawon", "Al Ettifaq", "Al Orubah", "Al Wehda", "Al Khaleej", "Al Shabab", "Al Fateh", "Al Kholood", "Al Riyadh", "Al Akhdoud", "Dhamk", "Al Raed", "Al Feiha", 
+],
+
+"LigaMX": [
+"América", "Cruz Azul", "Santos Laguna", "Necaxa", "Pachuca", "Guadalajara", "Monterrey", "Toluca", "Atlas", "Club Tijuana", "Puebla", "Atlético de San Luis", "Juárez", "Tigres UANL", "Pumas UNAM", "Mazatlán", "Querétaro", "León", 
+],
+
+"Denmark Superliga": [
+"Brøndby", "Viborg", "Nordsjælland", "København", "Midtjylland", "SønderjyskE", "Sønderjyske", "AaB", "Silkeborg", "Randers", "Lyngby", "Vejle", "AGF",
+],
+
+"Czech Fortuna Liga": [
+"Sparta Praha", "Viktoria Plzeň", "Hradec Králové", "Teplice", "Baník Ostrava", "Mladá Boleslav", "Slovan Liberec", "Pardubice", "Sigma Olomouc", "Dukla Praha", "České Budějovice", "Slovácko", "Karviná", "Bohemians 1905", "Jablonec", "Slavia Praha",
+],
+
+"Serbia SuperLiga": [
+"Bačka Topola", "Partizan", "Spartak Subotica", "Radnički Niš", "Crvena Zvezda", "Napredak Kruševac", "OFK Beograd", "Vojvodina", "Novi Pazar", "Radnički Kragujevac", "Čukarički", "Tekstilac Odžaci", "Jedinstvo Ub", "Mladost Lučani", "Železničar Pancevo", "IMT Novi Beograd",
+],
+
+"Croatia HNL": [
+"Hajduk Split", "Dinamo Zagreb", "Osijek", "Istra 1961", "Rijeka", "Varaždin", "Slaven Belupo", "Lokomotiva Zagreb", "Gorica", "Šibenik", 
+],
+
+"Bundesliga 2": [
+"Köln", "Hertha BSC", "Fortuna Düsseldorf", "Kaiserslautern", "Darmstadt 98", "Magdeburg", "Hamburger SV", "Jahn Regensburg", "Paderborn", "Eintracht Braunschweig", "Greuther Fürth", "Hannover 96", "Nürnberg", "Karlsruher SC", "Schalke 04", "Ulm", "Preußen Münster", "Elversberg", 
+],
+
+"Serie B": [
+"Pisa", "Palermo", "Cittadella", "Bari", "Catanzaro", "Modena", "Cremonese", "Frosinone", "Carrarese", "Sampdoria", "Salernitana", "Cosenza", "Juve Stabia", "Brescia", "Cesena", "Mantova", "Sassuolo", "Spezia", "Reggiana", "Südtirol",
+],
+
+"Ligue 2": [
+"Lorient","Caen", "Paris", "Pau", "Guingamp", "Rodez", "Annecy", "Metz", "Red Star", "Dunkerque", "Grenoble", "Ajaccio", "Laval", "Amiens SC", "Troyes", "Bastia", "Martigues", "Clermont", "Rodez ",
+],
+
+"Primeira Liga": [
+"Porto", "Benfica", "Sporting CP", "Sporting Braga", "Vitória Guimarães", "Gil Vicente", "Farense", "Moreirense", "Nacional", "Arouca", "Estoril", "Rio Ave", "Santa Clara", "Boavista", "Casa Pia AC", "Famalicão", "Estrela Amadora", "AVS", "AVS ",
+],
+
+"Ligue 1": [
+"PSG", "Lille", "Nice", "Lens", "Nantes", "Reims", "Olympique Lyonnais", "Monaco", "Olympique Marseille", "Brest", "Saint-Étienne", "Montpellier", "Angers SCO", "Le Havre", "Rennes", "Auxerre", "Strasbourg", "Toulouse", 
+],
+
+"Premier League": [
+"Manchester City", "Tottenham Hotspur", "Arsenal", "Manchester United", "Aston Villa", "Liverpool", "Southampton", "Everton", "Chelsea", "Brighton", "Newcastle United", "Wolverhampton Wanderers", "Fulham", "Crystal Palace", "Brentford", "Bournemouth", "West Ham United", "Leicester City", "Nottingham Forest", "Ipswich Town", "Wolverhampton",
+],
+
+"Bundesliga": [
+"Borussia Dortmund", "Stuttgart", "Wolfsburg", "Bayer Leverkusen", "Borussia M'gladbach", "Augsburg", "Union Berlin", "Eintracht Frankfurt", "Bayern München", "Hoffenheim", "Mainz 05", "Werder Bremen", "RB Leipzig", "St. Pauli", "Holstein Kiel", "Freiburg", "Heidenheim", "Bochum", "Borussia Mgladbach",
+],
+
+"Eredivisie": [
+"PSV", "Feyenoord", "Sparta Rotterdam", "Twente", "Utrecht", "Groningen", "PEC Zwolle", "Almere City", "NAC Breda", "NEC", "Fortuna Sittard", "Go Ahead Eagles", "Heerenveen", "Willem II", "Heracles", "AZ", "RKC Waalwijk", "Ajax",
+],
+
+"La Liga": [
+"Valencia", "Atlético Madrid", "Barcelona", "Real Madrid", "Real Sociedad", "Real Betis", "Osasuna", "Deportivo Alavés", "Getafe", "Athletic Bilbao", "Girona", "Mallorca", "Villarreal", "Real Valladolid", "Rayo Vallecano", "Leganés", "Sevilla", "Las Palmas", "Celta de Vigo", "Espanyol",
+],
+
+"Serie A": [
+"Milan", "Juventus", "Atalanta", "Lazio", "Napoli", "Roma", "Monza", "Internazionale", "Lecce", "Torino", "Parma", "Udinese", "Genoa", "Hellas Verona", "Bologna", "Fiorentina", "Cagliari", "Venezia", "Como", "Empoli", 
+],
+
+};
+
+const allData1 = [];
+const allData2 = [];
+const allData3 = [];
+const allData4 = [];
+const allData5 = [];
+const allData6 = [];
+const allData7 = [];
+const allData8 = [];
+const allData9 = [];
+const allData10 = [];
+const allData11 = [];
+const allData12 = [];
+  let allDataAsString1 = '';
+  let allDataAsString2 = '';
+  let allDataAsString3 = '';
+  let allDataAsString4 = '';
+  let allDataAsString5 = '';
+  let allDataAsString6 = '';
+
+
+  const urls1 = [
+    'https://datamb.football/database/OLD/RATOP72425/GK/GK.xlsx',
+];
+
+    const urls2 = [
+    'https://datamb.football/database/OLD/RAPRO2425/GK/GK.xlsx',
+'https://datamb.football/database/OLD/RAPRO2024/GK/GK.xlsx',
+
+    ]
+
+    const urls3 = [
+    'https://datamb.football/database/OLD/RATOP72425/CB/CB.xlsx',
+  ];
+
+    const urls4 = [
+  
+    'https://datamb.football/database/OLD/RAPRO2425/CB/CB.xlsx',
+'https://datamb.football/database/OLD/RAPRO2024/CB/CB.xlsx',
+
+
+    ]
+
+    const urls5 = [
+      'https://datamb.football/database/OLD/RATOP72425/FB/FB.xlsx',
+
+  
+];
+
+    const urls6 = [
+    'https://datamb.football/database/OLD/RAPRO2425/FB/FB.xlsx',
+'https://datamb.football/database/OLD/RAPRO2024/FB/FB.xlsx',
+
+
+    ]
+    
+
+    const urls7 = [
+    'https://datamb.football/database/OLD/RATOP72425/CM/CM.xlsx',
+];
+
+    const urls8 = [
+    'https://datamb.football/database/OLD/RAPRO2425/CM/CM.xlsx',
+    'https://datamb.football/database/OLD/RAPRO2024/CM/CM.xlsx',
+    ]
+
+    const urls9 = [
+    'https://datamb.football/database/OLD/RATOP72425/FW/FW.xlsx',
+
+];
+
+    const urls10 = [
+    'https://datamb.football/database/OLD/RAPRO2425/FW/FW.xlsx',
+    'https://datamb.football/database/OLD/RAPRO2024/FW/FW.xlsx',
+
+
+    ]
+
+    const urls11 = [
+    'https://datamb.football/database/OLD/RATOP72425/ST/ST.xlsx',
+
+];
+
+    const urls12 = [
+   'https://datamb.football/database/OLD/RAPRO2425/ST/ST.xlsx',
+    'https://datamb.football/database/OLD/RAPRO2024/ST/ST.xlsx',
+
+    ]
+
+
+
+  const fetchPromises1 = urls1.map(url => fetch(url).then(response => response.arrayBuffer()));
+const fetchPromises2 = urls2.map(url => fetch(url).then(response => response.arrayBuffer()));
+
+  function processAndStoreData1(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+                            
+              row[15] = `${row[1]}`;
+  
+              // Reorder columns
+            const reorderedRow = [
+                row[0],
+                row[15],
+                row[2],
+                row[8], 
+                row[10],
+                row[5],
+                row[11],
+                row[7],
+                row[6],
+                row[9],
+                row[4],
+                row[3]
+            ];
+              allData1.push(reorderedRow);
+          });
+       
+
+function getTeamLeague1(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData1.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague1(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData1.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData1.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+  function processAndStoreData2(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+              row[15] = `${row[1]}`;
+              
+            const reorderedRow = [
+                row[0],
+                row[15],
+                row[2],
+                row[8],
+                row[10],
+                row[5],
+                row[11],
+                row[7],
+                row[6],
+                row[9],
+                row[4],
+                row[3]
+            ];
+  
+              allData2.push(reorderedRow);
+          });
+         
+
+function getTeamLeague2(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData2.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague2(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData2.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData2.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+
+
+  
+  Promise.all(fetchPromises1)
+      .then(responses => {
+          processAndStoreData1(responses);
+  
+      
+          // Fetch and process the remaining files
+          Promise.all(fetchPromises2)
+              .then(responses2 => {
+                  processAndStoreData2(responses2);
+  
+
+                  // Concatenate intermediate data with new data
+                  const finalData = allData1.concat(allData2);
+  
+                  // Reset and assign new unique IDs
+                  finalData.forEach((row, index) => {
+                      row[0] = `${index + 1}`;
+                  });
+                  
+                  finalData.forEach(row => {
+                      allDataAsString1 += row.join(',') + '\n';
+                  });
+  
+// Replace all '\n' characters with actual new rows in the CSV
+let csvData1 = allDataAsString1.split('\\n').join('\n');
+
+// Convert the CSV string into an array of rows
+let rows = csvData1.split('\n');
+
+// Remove the last row
+rows.pop();
+
+// Join the rows back into a single string
+csvData1 = rows.join('\n');
+
+
+const fetchPromises3 = urls3.map(url => fetch(url).then(response => response.arrayBuffer()));
+const fetchPromises4 = urls4.map(url => fetch(url).then(response => response.arrayBuffer()));
+
+  function processAndStoreData3(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+              row[15] = `${row[1]}`;
+  
+              // Reorder columns
+                            const reorderedRow = [
+            row[0],
+            row[15],
+            row[2],
+            row[10],
+            row[9],
+            row[11],
+            row[5],
+            row[6],
+            row[7],
+            row[8],
+            row[4],
+            row[3]
+        ];
+              allData3.push(reorderedRow);
+          });
+       
+
+function getTeamLeague3(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData3.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague3(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData3.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData3.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+  function processAndStoreData4(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+              row[15] = `${row[1]}`;
+  
+              // Reorder columns
+                            const reorderedRow = [
+            row[0],
+            row[15],
+            row[2], 
+            row[10],
+            row[9],
+            row[11],
+            row[5],
+            row[6],
+            row[7],
+            row[8],
+            row[4],
+            row[3]
+        ];
+  
+              allData4.push(reorderedRow);
+          });
+         
+
+function getTeamLeague4(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData4.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague4(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData4.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData4.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+
+
+  
+  Promise.all(fetchPromises3)
+      .then(responses3 => {
+          processAndStoreData3(responses3);
+  
+      
+          // Fetch and process the remaining files
+          Promise.all(fetchPromises4)
+              .then(responses4 => {
+                  processAndStoreData4(responses4);
+  
+
+                  // Concatenate intermediate data with new data
+                  const finalData = allData3.concat(allData4);
+  
+                  // Reset and assign new unique IDs
+                  finalData.forEach((row, index) => {
+                      row[0] = `${index + 1}`;
+                  });
+                  
+                  finalData.forEach(row => {
+                      allDataAsString2 += row.join(',') + '\n';
+                  });
+  
+
+                  let csvData2 = allDataAsString2.split('\\n').join('\n');
+let rows2 = csvData2.split('\n');
+rows2.pop();
+csvData2 = rows2.join('\n');
+
+const fetchPromises5 = urls5.map(url => fetch(url).then(response => response.arrayBuffer()));
+const fetchPromises6 = urls6.map(url => fetch(url).then(response => response.arrayBuffer()));
+
+  function processAndStoreData5(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+
+              row[15] = `${row[1]}`;
+  
+              // Reorder columns
+                                  const reorderedRow = [
+              row[0],
+              row[15],
+              row[2], 
+              row[10],
+              row[9],
+              row[11],
+              row[5],
+              row[6],
+              row[7],
+              row[8],
+              row[4],
+              row[3]
+          ];
+              allData5.push(reorderedRow);
+          });
+       
+
+function getTeamLeague5(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData5.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague5(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData5.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData5.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+  function processAndStoreData6(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+
+              row[15] = `${row[1]}`;
+                                  const reorderedRow = [
+              row[0],
+              row[15],  
+              row[2],
+              row[10],
+              row[9],
+              row[11],
+              row[5],
+              row[6],
+              row[7],
+              row[8],
+              row[4],
+              row[3]
+          ];
+  
+              allData6.push(reorderedRow);
+          });
+         
+
+function getTeamLeague6(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData6.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague6(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData6.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData6.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+
+
+  
+  Promise.all(fetchPromises5)
+      .then(responses5 => {
+          processAndStoreData5(responses5);
+  
+      
+          // Fetch and process the remaining files
+          Promise.all(fetchPromises6)
+              .then(responses6 => {
+                  processAndStoreData6(responses6);
+  
+
+                  // Concatenate intermediate data with new data
+                  const finalData = allData5.concat(allData6);
+  
+                  // Reset and assign new unique IDs
+                  finalData.forEach((row, index) => {
+                      row[0] = `${index + 1}`;
+                  });
+                  
+                  finalData.forEach(row => {
+                      allDataAsString3 += row.join(',') + '\n';
+                  });
+  
+
+                  let csvData3 = allDataAsString3.split('\\n').join('\n');
+let rows3 = csvData3.split('\n');
+rows3.pop();
+csvData3 = rows3.join('\n');
+
+
+const fetchPromises7 = urls7.map(url => fetch(url).then(response => response.arrayBuffer()));
+const fetchPromises8 = urls8.map(url => fetch(url).then(response => response.arrayBuffer()));
+
+  function processAndStoreData7(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+
+              row[15] = `${row[1]}`;
+  
+              // Reorder columns
+                                  const reorderedRow = [
+                  row[0],
+                  row[15],
+                  row[2],
+                  row[9],
+                  row[5],
+                  row[6],
+                  row[10],
+                  row[7],
+                  row[8],
+                  row[11],
+                  row[4],
+                  row[3]
+              ];
+              allData7.push(reorderedRow);
+          });
+       
+
+function getTeamLeague7(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData7.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague7(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData7.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData7.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+  function processAndStoreData8(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+
+              row[15] = `${row[1]}`;
+  
+                                  const reorderedRow = [
+                  row[0],
+                  row[15],
+                  row[2], 
+                  row[9],
+                  row[5],
+                  row[6],
+                  row[10],
+                  row[7],
+                  row[8],
+                  row[11],
+                  row[4],
+                  row[3]
+              ];
+  
+              allData8.push(reorderedRow);
+          });
+         
+
+function getTeamLeague8(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData8.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague8(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData8.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData8.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+
+
+  
+  Promise.all(fetchPromises7)
+      .then(responses7 => {
+          processAndStoreData7(responses7);
+  
+      
+          // Fetch and process the remaining files
+          Promise.all(fetchPromises8)
+              .then(responses8 => {
+                  processAndStoreData8(responses8);
+  
+
+                  // Concatenate intermediate data with new data
+                  const finalData = allData7.concat(allData8);
+  
+                  // Reset and assign new unique IDs
+                  finalData.forEach((row, index) => {
+                      row[0] = `${index + 1}`;
+                  });
+                  
+                  finalData.forEach(row => {
+                      allDataAsString4 += row.join(',') + '\n';
+                  });
+  
+
+
+                  let csvData4 = allDataAsString4.split('\\n').join('\n');
+let rows4 = csvData4.split('\n');
+rows4.pop();
+csvData4 = rows4.join('\n');
+
+
+
+const fetchPromises9 = urls9.map(url => fetch(url).then(response => response.arrayBuffer()));
+const fetchPromises10 = urls10.map(url => fetch(url).then(response => response.arrayBuffer()));
+
+  function processAndStoreData9(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+              row[15] = `${row[1]}`;
+
+              // Reorder columns
+                                  const reorderedRow = [
+                  row[0],
+                  row[15],
+                  row[2],
+                  row[7],
+                  row[9],
+                  row[5],
+                  row[11],
+                  row[6],
+                  row[8],
+                  row[10],
+                  row[4]
+              ];
+              allData9.push(reorderedRow);
+          });
+       
+
+function getTeamLeague9(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData9.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague9(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData9.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData9.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+  function processAndStoreData10(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+              row[15] = `${row[1]}`;
+  
+                                  const reorderedRow = [
+                  row[0],
+                  row[15],
+                  row[2],
+                  row[3],
+                  row[7],
+                  row[9],
+                  row[5],
+                  row[11],
+                  row[6],
+                  row[8],
+                  row[10],
+                  row[4],
+                  row[3]
+              ];
+  
+              allData10.push(reorderedRow);
+          });
+         
+
+function getTeamLeague10(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData10.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague10(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData10.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData10.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+
+
+  
+  Promise.all(fetchPromises9)
+      .then(responses9 => {
+          processAndStoreData9(responses9);
+  
+      
+          // Fetch and process the remaining files
+          Promise.all(fetchPromises10)
+              .then(responses10 => {
+                  processAndStoreData10(responses10);
+  
+
+                  // Concatenate intermediate data with new data
+                  const finalData = allData9.concat(allData10);
+  
+                  // Reset and assign new unique IDs
+                  finalData.forEach((row, index) => {
+                      row[0] = `${index + 1}`;
+                  });
+                  
+                  finalData.forEach(row => {
+                      allDataAsString5 += row.join(',') + '\n';
+                  });
+  
+
+                  let csvData5 = allDataAsString5.split('\\n').join('\n');
+let rows5 = csvData5.split('\n');
+rows5.pop();
+csvData5 = rows5.join('\n');
+
+const fetchPromises11 = urls11.map(url => fetch(url).then(response => response.arrayBuffer()));
+const fetchPromises12 = urls12.map(url => fetch(url).then(response => response.arrayBuffer()));
+
+  function processAndStoreData11(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+
+              row[15] = `${row[1]}`;
+  
+                                  const reorderedRow = [
+            row[0],
+            row[15],
+            row[2],
+            row[6],
+            row[11],
+            row[7],
+            row[5],
+            row[8],
+            row[9],
+            row[10],
+            row[4],
+            row[3]
+            ];
+              allData11.push(reorderedRow);
+          });
+       
+
+function getTeamLeague11(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData11.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague11(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData11.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData11.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+  function processAndStoreData12(dataArray) {
+      // Unique ID counter
+      let uniqueIdCounter = 1;
+  
+      dataArray.forEach(data => {
+          const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          // Exclude header row
+          const dataWithoutHeader = jsonData.slice(1);
+  
+          // Perform transformations and add unique ID
+          dataWithoutHeader.forEach(row => {
+              // Generate unique ID and shift columns
+              row.unshift(`${uniqueIdCounter++}`);
+  
+
+              row[15] = `${row[1]}`;
+  
+                                  const reorderedRow = [
+            row[0],
+            row[15],
+            row[2],
+            row[6],
+            row[11],
+            row[7],
+            row[5],
+            row[8],
+            row[9],
+            row[10],
+            row[4],
+            row[3]
+            ];
+              allData12.push(reorderedRow);
+          });
+         
+
+function getTeamLeague12(team) {
+        for (const [league, teams] of Object.entries(leagues)) {
+            if (teams.includes(team)) {
+                return league;
+            }
+        }
+        return "Unknown League";
+    }
+
+    const outputLines = [];
+    allData12.forEach(row => {
+        if (row.length >= 3) {
+            const team = row[2];
+            const league = getTeamLeague12(team);
+            row[12] = league; // Replace the third element with the league information
+            outputLines.push(row.join(",")); // Join the modified parts back into a line
+        } else {
+            // Handle rows that don't have at least 3 elements as needed
+            outputLines.push(row.join(","));
+        }
+    });
+      });
+  
+      // Extract values from columns 4, 5, 6, 7, 8, 9, and 10
+      const columnsToConvert = [3, 4, 5, 6, 7, 8, 9];
+      const columnValues = columnsToConvert.map(col => allData12.map(row => parseFloat(row[col])));
+  
+      // Calculate percentiles
+      const percentiles = columnValues.map(values => {
+          const sorted = [...values].sort((a, b) => a - b);
+          return values.map(value => {
+              const rank = sorted.indexOf(value) + 1;
+              return (rank / sorted.length);
+          });
+      });
+  
+      // Replace original values with percentiles
+      allData12.forEach((row, rowIndex) => {
+          columnsToConvert.forEach((col, colIndex) => {
+              row[col] = percentiles[colIndex][rowIndex].toFixed(3);
+          });
+      });
+  }
+
+
+
+  
+  Promise.all(fetchPromises11)
+      .then(responses11 => {
+          processAndStoreData11(responses11);
+  
+      
+          // Fetch and process the remaining files
+          Promise.all(fetchPromises12)
+              .then(responses12 => {
+                  processAndStoreData12(responses12);
+  
+
+                  // Concatenate intermediate data with new data
+                  const finalData = allData11.concat(allData12);
+  
+                  // Reset and assign new unique IDs
+                  finalData.forEach((row, index) => {
+                      row[0] = `${index + 1}`;
+                  });
+                  
+                  finalData.forEach(row => {
+                      allDataAsString6 += row.join(',') + '\n';
+                  });
+  
+
+                  let csvData6 = allDataAsString6.split('\\n').join('\n');
+let rows6 = csvData6.split('\n');
+rows6.pop();
+csvData6 = rows6.join('\n');
+
+
+let selectedLeague = "All"; // Declare the selectedLeague variable outside the event listener
+
+document.getElementById('league').addEventListener('change', function () {
+selectedLeague = this.value;
+});
+  // Store data for each dataset in separate arrays
+  const dataArray1 = csvData1.split('\n').map(line => line.split(','));
+  const dataArray2 = csvData2.split('\n').map(line => line.split(','));
+  const dataArray3 = csvData3.split('\n').map(line => line.split(','));
+  const dataArray4 = csvData4.split('\n').map(line => line.split(','));
+  const dataArray5 = csvData5.split('\n').map(line => line.split(','));
+  const dataArray6 = csvData6.split('\n').map(line => line.split(','));
+
+
+
+
+  const metricNames1 = [
+    'Save%',
+    'Aerials won',
+    'Int (PAdj)',
+    'Passes cmp',
+    'Long%',
+    'Short%',
+    'PSxG-GA'
+  ];
+
+  // Metric names for CB
+  const metricNames2 = [
+    'Passes cmp',
+    'Fwd pass%',
+    'Prog passes',
+    'Poss won',
+    'Def duel%',
+    'Aerial%',
+    'Prog carries'
+  ];
+
+  // Metric names for FB
+  const metricNames3 = [
+    'Crosses cmp',
+    'xA',
+    'Prog passes',
+    'Poss won',
+    'Def duel%',
+    'Aerial%',
+    'Prog carries'
+  ];
+
+  // Metric names for CM
+  const metricNames4 = [
+    'Duel%',
+    'Poss won',
+    'Prog carries',
+    'Fwd passes',
+    'Fwd pass%',
+    'Key passes',
+    'Prog passes'
+  ];
+
+  // Metric names for FW
+  const metricNames5 = [
+    'Prog carries',
+    'Dribbles cmp',
+    'NPG',
+    'npxG+xA',
+    'Assists',
+    'Key passes',
+    'Crosses cmp'
+  ];
+
+  // Metric names for ST
+  const metricNames6 = [
+    'NPG',
+    'npxG',
+    'Goal conv%',
+    'Aerial%',
+    'Touches in box',
+    'xA',
+    'Off duels won'
+  ];
+
+
+
+  // Function to update metric labels based on the selected dataset
+function updateMetricLabels(dataset) {
+  const labels = document.querySelectorAll('label[for]');
+  const inputs = document.querySelectorAll('input[type="number"]');
+  let position = '';
+  let metricNames = [];
+  
+  // Determine position code and metric names based on dataset
+  switch(dataset) {
+    case 'dataset1': 
+      position = 'gk'; 
+      metricNames = metricNames1;
+      break;
+    case 'dataset2': 
+      position = 'cb'; 
+      metricNames = metricNames2;
+      break;
+    case 'dataset3': 
+      position = 'fb'; 
+      metricNames = metricNames3;
+      break;
+    case 'dataset4': 
+      position = 'cm'; 
+      metricNames = metricNames4;
+      break;
+    case 'dataset5': 
+      position = 'fw'; 
+      metricNames = metricNames5;
+      break;
+    case 'dataset6': 
+      position = 'st'; 
+      metricNames = metricNames6;
+      break;
+  }
+
+  // Map the form fields to their corresponding index in the metricNames array
+  const fieldToIndexMap = {
+    'defensiveActions': 0,
+    'aerialsContested': 1,
+    'exitLine': 2,
+    'passes': 3,
+    'longPassPercentage': 4,
+    'shortPassPercentage': 5,
+    'psxg': 6
+  };
+
+  // Create a mapping of translation keys for each position
+  const translationKeyMap = {
+    'gk': {
+      0: 'metrics.gk.save',
+      1: 'metrics.gk.aerials',
+      2: 'metrics.gk.int',
+      3: 'metrics.gk.passes',
+      4: 'metrics.gk.long_pass',
+      5: 'metrics.gk.short_pass',
+      6: 'metrics.gk.psxg_ga'
+    },
+    'cb': {
+      0: 'metrics.cb.passes',
+      1: 'metrics.cb.forward_pass',
+      2: 'metrics.cb.prog_passes',
+      3: 'metrics.cb.possWon',
+      4: 'metrics.cb.def_duel',
+      5: 'metrics.cb.aerial',
+      6: 'metrics.cb.prog_carries'
+    },
+    'fb': {
+      0: 'metrics.fb.cross',
+      1: 'metrics.fb.xa',
+      2: 'metrics.fb.prog_passes',
+      3: 'metrics.fb.def_actions',
+      4: 'metrics.fb.def_duel',
+      5: 'metrics.fb.aerial',
+      6: 'metrics.fb.prog_carries'
+    },
+    'cm': {
+      0: 'metrics.cm.duel',
+      1: 'metrics.cm.possWon',
+      2: 'metrics.cm.prog_carries',
+      3: 'metrics.cm.forward_passes',
+      4: 'metrics.cm.forward_pass',
+      5: 'metrics.cm.key_passes',
+      6: 'metrics.cm.prog_passes'
+    },
+    'fw': {
+      0: 'metrics.fw.prog_carries',
+      1: 'metrics.fw.dribbles',
+      2: 'metrics.fw.npg',
+      3: 'metrics.fw.xg_xa',
+      4: 'metrics.fw.assists',
+      5: 'metrics.fw.key_passes',
+      6: 'metrics.fw.cross'
+    },
+    'st': {
+      0: 'metrics.st.npg',
+      1: 'metrics.st.npxg',
+      2: 'metrics.st.conv',
+      3: 'metrics.st.aerial',
+      4: 'metrics.st.touches',
+      5: 'metrics.st.xa',
+      6: 'metrics.st.off_duel'
+    }
+  };
+
+  // Update each label with the appropriate metric name
+  for (const [field, index] of Object.entries(fieldToIndexMap)) {
+    updateLabel(field, metricNames[index], translationKeyMap[position][index]);
+  }
+
+
+}
+
+// Update a label with the actual metric name and set the translation key
+function updateLabel(forAttribute, metricName, translationKey) {
+  const label = document.querySelector(`label[for="${forAttribute}"]`);
+  if (label) {
+    // Set the data-i18n attribute for potential translation
+    label.setAttribute('data-i18n', translationKey);
+    
+    // Set the actual metric name directly
+    label.textContent = metricName;
+    
+    // If translations are available, try to use them
+    if (translations) {
+      const translation = getNestedTranslation(translations, translationKey);
+      if (translation) {
+        label.textContent = translation;
+      }
+    }
+  }
+}
+
+document.getElementById('datasetSelector').addEventListener('change', function () {
+  const selectedDataset = document.getElementById('datasetSelector').value;
+  sortColumnIndex = -1;
+  ascending = true;
+  updateMetricLabels(selectedDataset);
+  clearSearchInputs();
+});
+
+// Initialize the metric labels based on the default dataset
+updateMetricLabels('dataset1');
+
+// Display search instructions when the page loads
+displaySearchInstructions();
+
+
+  function clearSearchInputs() {
+    // Clear all input fields
+    const inputs = document.querySelectorAll('input[type="number"]');
+    inputs.forEach(input => (input.value = ''));
+
+    // Clear the results container
+    const resultsContainer = document.getElementById('resultsContainer');
+    resultsContainer.innerHTML = '';
+
+  }
+  
+  // Function to display search instructions when the page loads
+  function displaySearchInstructions() {
+    const resultsContainer = document.getElementById('resultsContainer');
+    resultsContainer.innerHTML = '';
+    
+    const instructionsMessage = document.createElement('div');
+    instructionsMessage.classList.add('no-results-message');
+    
+    instructionsMessage.innerHTML = `
+        <span data-i18n="search.instructions_text"><strong>Search Instructions</strong><br><br>
+    
+        <li>Select a position and league</li>
+        <li>Enter minimum percentile values (0-100)</li>
+        <li>Filter by age and minutes played</li>
+        <li>Click on a column header to sort by that metric</li>
+        <li>Click on "Current" for current season data</li>
+        <span>
+      
+    `;
+    
+    resultsContainer.appendChild(instructionsMessage);
+    applyLanguage(getPreferredLanguage());
+  }
+
+  document.getElementById('searchForm').addEventListener('submit', function (event) {
+event.preventDefault();
+
+// Get the selected dataset and league
+const selectedDataset = document.getElementById('datasetSelector').value;
+selectedLeague = document.getElementById('league').value;
+
+// Check if we're searching with the same dataset (position)
+const sameDataset = selectedDataset === previousDataset;
+// Store current dataset for next search
+previousDataset = selectedDataset;
+
+// Save current sort state only if same dataset
+const savedSortColumnIndex = sameDataset ? sortColumnIndex : -1;
+const savedAscending = sameDataset ? ascending : true;
+
+// Get the user-entered percentile values from the form
+const defensiveActionsLow = parseInt(document.getElementById('defensiveActionsLow').value);
+const aerialsContestedLow = parseInt(document.getElementById('aerialsContestedLow').value);
+const exitLineLow = parseInt(document.getElementById('exitLineLow').value);
+const passesLow = parseInt(document.getElementById('passesLow').value);
+const longPassPercentageLow = parseInt(document.getElementById('longPassPercentageLow').value);
+const shortPassPercentageLow = parseInt(document.getElementById('shortPassPercentageLow').value);
+const psxgLow = parseInt(document.getElementById('psxgLow').value);
+const ageLow = parseInt(document.getElementById('ageLow').value);
+const ageHigh = parseInt(document.getElementById('ageHigh').value);
+const minutesPlayedLow = parseInt(document.getElementById('minutesPlayedLow').value);
+const minutesPlayedHigh = parseInt(document.getElementById('minutesPlayedHigh').value);
+
+// Determine the dataArray based on the selected dataset
+let dataArray;
+switch (selectedDataset) {
+  case 'dataset2':
+    dataArray = dataArray2;
+    break;
+  case 'dataset3':
+    dataArray = dataArray3;
+    break;
+  case 'dataset4':
+    dataArray = dataArray4;
+    break;
+  case 'dataset5':
+    dataArray = dataArray5;
+    break;
+  case 'dataset6':
+    dataArray = dataArray6;
+    break;
+  default:
+    dataArray = dataArray1;
+}
+
+// Filter the dataArray based on user-entered percentiles
+const restrictedPlayers = reverseSearch(
+[
+[defensiveActionsLow],
+[aerialsContestedLow],
+[exitLineLow],
+[passesLow],
+[longPassPercentageLow],
+[shortPassPercentageLow],
+[psxgLow],
+[ageLow, ageHigh],
+[minutesPlayedLow, minutesPlayedHigh]
+],
+dataArray, // Pass the dataArray as a parameter
+selectedLeague // Pass the selected league as a parameter
+);
+const resultsContainer = document.getElementById('resultsContainer');
+resultsContainer.innerHTML = '';
+
+if (restrictedPlayers.length === 0) {
+const noResultsMessage = document.createElement('p');
+noResultsMessage.setAttribute('data-i18n', 'search.no_results');
+noResultsMessage.textContent = 'No Players Found'; // Default text for users without translations
+noResultsMessage.classList.add('no-results-message'); // Add a class to the element
+resultsContainer.appendChild(noResultsMessage);
+applyLanguage(getPreferredLanguage()); // Use getPreferredLanguage() to get the current preferred language
+} else {
+// Create the table element
+const table = document.createElement('table');
+
+// Create the table header
+const tableHeader = createTableHeader();
+table.appendChild(tableHeader);
+
+// Create the table body
+const tableBody = document.createElement('tbody');
+
+// Add the player data rows to the table body
+restrictedPlayers.forEach(playerData => {
+  const playerRow = document.createElement('tr');
+  tableBody.appendChild(playerRow);
+
+  // Add the player name and other info in the first column
+  const playerNameCell = document.createElement('td');
+  const playerName = playerData[1];
+  const playerData2 = playerData[2];
+  const playerData11 = playerData[11];
+  const playerData10 = playerData[10];
+
+
+  // Create a formatted HTML string
+  const formattedText = `<span>${playerName}</span><br><span class="player-info">${playerData2}<span class="age">, ${playerData11}</span><span class="minutes">, ${playerData10} min</span></span>`;
+
+  // Set the formatted HTML as the content of playerNameCell
+  playerNameCell.innerHTML = formattedText;
+  playerRow.appendChild(playerNameCell);
+
+  // Add the player metric values in the subsequent columns
+    for (let i = 3; i <= 9; i++) {
+const metricValueCell = document.createElement('td');
+const numericValue = (parseFloat(playerData[i]) * 100).toFixed(2);
+
+// Apply the color inline style based on the value range
+metricValueCell.textContent = numericValue;
+if (numericValue >= 75 && numericValue <= 100) {
+  metricValueCell.style.color = 'green';
+} else if (numericValue >= 0 && numericValue <= 25) {
+  metricValueCell.style.color = 'red';
+}
+
+playerRow.appendChild(metricValueCell);
+}
+});
+
+// Append the table body to the table
+table.appendChild(tableBody);
+
+// Append the table to the wrapper container
+const tableWrapper = document.getElementById('tableWrapper');
+tableWrapper.innerHTML = ''; // Clear any previous content
+tableWrapper.appendChild(table);
+
+// Restore sorting if we had a previous sort state for the same dataset
+if (savedSortColumnIndex !== -1) {
+  sortColumnIndex = savedSortColumnIndex;
+  ascending = savedAscending;
+  
+  // Get the table body rows and sort them
+  const tableBody = table.querySelector('tbody');
+  const rows = Array.from(tableBody.querySelectorAll('tr'));
+  
+  // Sort the rows based on the saved column index
+  rows.sort((row1, row2) => {
+    const value1 = parseFloat(row1.children[sortColumnIndex + 1].textContent);
+    const value2 = parseFloat(row2.children[sortColumnIndex + 1].textContent);
+    
+    if (ascending) {
+      return value1 - value2;
+    } else {
+      return value2 - value1;
+    }
+  });
+  
+  // Clear and re-append the sorted rows
+  tableBody.innerHTML = '';
+  rows.forEach(row => {
+    tableBody.appendChild(row);
+  });
+  
+  // Update sort indicators to match the restored sort state
+  document.querySelectorAll('.sort-indicator').forEach((indicator, index) => {
+    if (index === sortColumnIndex) {
+      indicator.textContent = ascending ? '↑' : '↓';
+    } else {
+      indicator.textContent = '';
+    }
+  });
+}
+}
+
+  });
+
+let sortColumnIndex = -1;
+let ascending = true;
+let previousDataset = '';
+
+function createTableHeader() {
+const tableHeader = document.createElement('thead');
+const headerRow = document.createElement('tr');
+const selectedDataset = document.getElementById('datasetSelector').value;
+let metricLabels;
+let position = '';
+
+// Determine position code based on dataset
+switch(selectedDataset) {
+  case 'dataset2':
+    position = 'cb';
+    metricLabels = metricNames2;
+    break;
+  case 'dataset3':
+    position = 'fb';
+    metricLabels = metricNames3;
+    break;
+  case 'dataset4':
+    position = 'cm';
+    metricLabels = metricNames4;
+    break;
+  case 'dataset5':
+    position = 'fw';
+    metricLabels = metricNames5;
+    break;
+  case 'dataset6':
+    position = 'st';
+    metricLabels = metricNames6;
+    break;
+  default:
+    position = 'gk';
+    metricLabels = metricNames1;
+    break;
+}
+
+const emptyHeaderCell = document.createElement('th');
+emptyHeaderCell.textContent = '';
+headerRow.appendChild(emptyHeaderCell);
+
+// Create array of metric keys based on position
+const metricKeys = position === 'gk' ? 
+  ['def_actions', 'aerials', 'exit_line', 'passes', 'long_pass', 'short_pass', 'psxg_ga'] :
+  position === 'cb' ?
+  ['passes', 'forward_pass', 'prog_passes', 'def_actions', 'def_duel', 'aerial', 'prog_carries'] :
+  position === 'fb' ?
+  ['cross', 'xa', 'prog_passes', 'def_actions', 'def_duel', 'aerial', 'prog_carries'] :
+  position === 'cm' ?
+  ['duel', 'def_actions', 'prog_carries', 'forward_passes', 'forward_pass', 'key_passes', 'prog_passes'] :
+  position === 'fw' ?
+  ['prog_carries', 'dribbles', 'npg', 'xg_xa', 'assists', 'key_passes', 'cross'] :
+  position === 'st' ?
+  ['npg', 'npxg', 'conv', 'aerial', 'touches', 'xa', 'off_duel'] :
+  [];
+for (let i = 0; i < metricLabels.length; i++) {
+  const headerCell = document.createElement('th');
+  const translationKey = `metrics.${position}.${metricKeys[i]}`;
+  const translation = getNestedTranslation(translations, translationKey);
+  
+  // Create a container for the text and sort indicator
+  const headerContent = document.createElement('div');
+  headerContent.className = 'header-content';
+  headerContent.style.display = 'flex';
+  headerContent.style.alignItems = 'center';
+  headerContent.style.justifyContent = 'center';
+  headerContent.style.gap = '4px';
+  
+  // Add the text
+  const headerText = document.createElement('span');
+  headerText.textContent = translation || metricLabels[i];
+  headerContent.appendChild(headerText);
+  
+  // Add sort indicator
+  const sortIndicator = document.createElement('span');
+  sortIndicator.className = 'sort-indicator';
+  sortIndicator.style.fontSize = '0.8em';
+  
+  // Set the initial sort indicator based on current sort state
+  if (sortColumnIndex === i) {
+    sortIndicator.textContent = ascending ? '↑' : '↓';
+  } else {
+    sortIndicator.textContent = '';
+  }
+  
+  headerContent.appendChild(sortIndicator);
+  headerCell.appendChild(headerContent);
+  headerCell.style.cursor = 'pointer';
+
+  // Add click event listener to the header cell for sorting
+  headerCell.addEventListener('click', () => {
+    sortColumn(i);
+    
+    // Update all sort indicators
+    document.querySelectorAll('.sort-indicator').forEach((indicator, index) => {
+      if (index === i) {
+        indicator.textContent = ascending ? '↑' : '↓';
+      } else {
+        indicator.textContent = '';
+      }
+    });
+  });
+
+  headerRow.appendChild(headerCell);
+}
+
+tableHeader.appendChild(headerRow);
+return tableHeader;
+}
+
+
+function sortColumn(columnIndex) {
+// Check if it's a different column or the same column that needs to be reversed
+if (sortColumnIndex === columnIndex) {
+  ascending = !ascending;
+} else {
+  ascending = false;
+  sortColumnIndex = columnIndex;
+}
+
+// Get the table body rows
+const tableBody = document.querySelector('tbody');
+const rows = Array.from(tableBody.querySelectorAll('tr'));
+
+// Sort the rows based on the selected column
+rows.sort((row1, row2) => {
+  const value1 = parseFloat(row1.children[columnIndex + 1].textContent);
+  const value2 = parseFloat(row2.children[columnIndex + 1].textContent);
+
+  if (ascending) {
+    return value1 - value2;
+  } else {
+    return value2 - value1;
+  }
+});
+
+// Clear the current table body content
+tableBody.innerHTML = '';
+
+// Append the sorted rows to the table body
+rows.forEach(row => {
+  tableBody.appendChild(row);
+});
+}
+
+
+document.getElementById('datasetSelector').addEventListener('change', function () {
+  const selectedDataset = document.getElementById('datasetSelector').value;
+
+  // Call the function with the selected dataset to update the metric labels
+  switch (selectedDataset) {
+    case 'dataset2':
+      updateMetricLabels('dataset2');
+      break;
+    case 'dataset3':
+      updateMetricLabels('dataset3');
+      break;
+    case 'dataset4':
+      updateMetricLabels('dataset4');
+      break;
+    case 'dataset5':
+      updateMetricLabels('dataset5');
+      break;
+    case 'dataset6':
+      updateMetricLabels('dataset6');
+      break;
+    default:
+      updateMetricLabels('dataset1');
+      break;
+  }
+
+  // Clear the search inputs and results when the dataset selector changes
+  clearSearchInputs();
+});
+
+function reverseSearch(percentiles, dataArray, selectedLeague) {
+return dataArray.filter(data => {
+  for (let i = 3; i <= 9; i++) {
+    const metricValue = parseFloat(data[i]) * 100;
+    if (metricValue < percentiles[i - 3][0]) {
+      return false;
+    }
+  }
+
+  const age = parseInt(data[11]);
+  if (age < percentiles[7][0] || age > percentiles[7][1]) {
+    return false;
+  }
+
+  const minutesPlayed = parseInt(data[10]);
+  if (minutesPlayed < percentiles[8][0] || (percentiles[8][1] && minutesPlayed > percentiles[8][1])) {
+    return false;
+  }
+
+  if (selectedLeague !== "All") {
+if (selectedLeague === "Top 7 Leagues") {
+  const topSevenLeagues = [
+    "Premier League",
+    "La Liga",
+    "Bundesliga",
+    "Serie A",
+    "Ligue 1",
+    "Eredivisie",
+    "Primeira Liga"
+  ];
+  const playerLeague = data[12]; // Assuming the league is in the 12th column (index 11)
+  if (!topSevenLeagues.includes(playerLeague)) {
+    return false;
+  }
+} else if (selectedLeague === "Top 5 Leagues") {
+  const topFiveLeagues = [
+    "Premier League",
+    "La Liga",
+    "Bundesliga",
+    "Serie A",
+    "Ligue 1"
+  ];
+  const playerLeague = data[12]; // Assuming the league is in the 12th column (index 11)
+  if (!topFiveLeagues.includes(playerLeague)) {
+    return false;
+  }
+} else if (selectedLeague === "Non Top 7 Leagues") {
+  const dataMBProLeagues = [
+    "Scotland Premiership",
+    "Belgium Pro League",
+    "Swiss Super League",
+    "Ukraine",
+    "Poland",
+    "Greece",
+    "Israel",
+    "Russia",
+    "Colombia",
+    "Chile",
+    "Paraguay",
+    "Ecuador",
+    "Austrian Bundesliga",
+    "Süper Lig",
+    "Saudi Pro League",
+    "Brazil Serie A",
+    "Argentina Primera",
+    "Uruguay Primera",
+    "LigaMX",
+    "MLS",
+    "K League 1",
+    "J1 League",
+    "Norway Eliteserien",
+    "Denmark Superliga",
+    "Sweden Allsvenskan",
+    "Czech Fortuna Liga",
+    "Serbia SuperLiga",
+    "Croatia HNL",
+    "Championship",
+    "Segunda Division",
+    "Bundesliga 2",
+    "Serie B",
+    "Ligue 2",
+    "Unknown League"
+  ];
+  const playerLeague = data[12]; // Assuming the league is in the 12th column (index 11)
+  if (!dataMBProLeagues.includes(playerLeague)) {
+    return false;
+  }
+} else if (selectedLeague === "South America") {
+  const southAmericaLeagues = [
+    "Brazil Serie A",
+    "Argentina Primera",
+    "Uruguay Primera",
+    "Colombia",
+    "Chile",
+    "Paraguay",
+    "Ecuador",
+  ];
+  const playerLeague = data[12]; // Assuming the league is in the 12th column (index 11)
+  if (!southAmericaLeagues.includes(playerLeague)) {
+    return false;
+  }
+} else if (selectedLeague === "Scandinavia") {
+  const scandinaviaLeagues = [
+    "Norway Eliteserien",
+    "Denmark Superliga",
+    "Sweden Allsvenskan"
+  ];
+  const playerLeague = data[12]; // Assuming the league is in the 12th column (index 11)
+  if (!scandinaviaLeagues.includes(playerLeague)) {
+    return false;
+  }
+} else if (selectedLeague === "Balkans") {
+  const balkansLeagues = [
+    "Czech Fortuna Liga",
+    "Serbia SuperLiga",
+    "Croatia HNL",
+    "Russia",
+    "Ukraine",
+    "Poland"
+  ];
+  const playerLeague = data[12]; // Assuming the league is in the 12th column (index 11)
+  if (!balkansLeagues.includes(playerLeague)) {
+    return false;
+  }
+} else if (selectedLeague === "Top 5 Leagues - 2nd Div.") {
+  const secondDivLeagues = [
+    "Championship",
+    "Segunda Division",
+    "Bundesliga 2",
+    "Serie B",
+    "Ligue 2"
+  ];
+  const playerLeague = data[12]; // Assuming the league is in the 12th column (index 11)
+  if (!secondDivLeagues.includes(playerLeague)) {
+    return false;
+  }
+} else {
+  const playerLeague = data[12]; // Assuming the league is in the 12th column (index 11)
+  if (playerLeague !== selectedLeague) {
+    return false;
+  }
+}
+}
+
+return true;
+});
+}
+
+// Initialize with preferred or default language
+document.addEventListener('DOMContentLoaded', () => {
+  const preferredLanguage = getPreferredLanguage();
+  loadTranslations(preferredLanguage);
+});
+
+// Display search instructions when the page loads
+displaySearchInstructions();
+
+})}) })}) })}) })}) })}) })})
